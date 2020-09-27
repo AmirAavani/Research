@@ -1,2 +1,2 @@
 # Research
-This repository contains my new research projects
+This repository contains my (newer) research projects
