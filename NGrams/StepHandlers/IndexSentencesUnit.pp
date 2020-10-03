@@ -7,34 +7,53 @@ interface
 uses
   Classes, SysUtils, PipelineUnit;
 
-function IndexSentences(Task: TTask; Args: array of Pointer): Boolean;
+function IndexSentences(Task: TTask): Boolean;
 
 implementation
 uses
-  StreamUnit, ParameterManagerUnit, QueueUnit, FileHelperUnit;
+  StreamUnit, ParameterManagerUnit, QueueUnit, FileHelperUnit, ALoggerUnit,
+  Generics.Collections;
 
-function IndexSentences(Task: TTask; Args: array of Pointer): Boolean;
+type
+  TIntList = specialize TList<Int64>;
+
+function IndexSentences(Task: TTask): Boolean;
 var
   Stream: TMyTextStream;
   Filename, Dir: AnsiString;
   Data: AnsiString;
   p: Integer;
+  Lines: TStringList;
   DocumentStartingPositions: TIntList;
 
 begin
-  Dir:= PString(Args[2])^;
+  Dir:= GetRunTimeParameterManager.ValueByName['--InputDir'].AsAnsiString;
+  DebugLn(Format('%d Task.ID: %d Dir = %s', [ThreadID, Task.ID, Dir]));
 
   Filename := ConcatPaths([Dir, 'wiki.train.tokens']);
   begin
+    DebugLn(Format('%d Filename: %s', [ThreadID, Filename]));
     Stream := TMyTextStream.Create(TFileStream.Create(
-      GetRunTimeParameterManager.ValueByName['--InputDir'].AsAnsiString + '/' + Filename, fmOpenRead),
+      Filename, fmOpenRead),
       True
     );
+    DebugLn(Format('+Filename: %s', [Filename]));
     Data := Stream.ReadAll;
-    p := Pos(sLineBreak +' =
+
+    Lines := TStringList.Create;
+    Lines.Delimiter := sLineBreak;
+    Lines.Text := Data;
+
+    DebugLn(Format('Len(Data): %d Lines.Count: %d', [Length(Data), Lines.Count]));
+    DebugLn(Lines[0]);
+    DebugLn(Lines[1]);
+    DebugLn(Lines[Lines.Count - 1]);
 
     Stream.Free;
   end;
+
+  DebugLn(Format('%d Task.ID: %d is Done', [ThreadID, Task.ID, Dir]));
+  Result := True;
 end;
 
 end.

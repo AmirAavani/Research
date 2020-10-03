@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <Version Value="12"/>
+    <BuildModes Active="Debug"/>
+    <Units>
+      <Unit>
+        <Filename Value="NGrams.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <CursorPos X="41" Y="19"/>
+        <UsageCount Value="119"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../my-units/General-Purpose-Units/ParameterManagerUnit.pp"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="9"/>
+        <TopLine Value="232"/>
+        <CursorPos Y="263"/>
+        <UsageCount Value="119"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../my-units/Pipeline/PipelineUnit.pp"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="182"/>
+        <CursorPos X="22" Y="198"/>
+        <UsageCount Value="119"/>
+        <Bookmarks Count="1">
+          <Item0 X="3" Y="132" ID="2"/>
+        </Bookmarks>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="ValidArguments.inc"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="10"/>
+        <CursorPos X="58" Y="4"/>
+        <UsageCount Value="119"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="StepHandlers/IndexSentencesUnit.pp"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="17"/>
+        <CursorPos X="11" Y="45"/>
+        <UsageCount Value="119"/>
+        <Bookmarks Count="1">
+          <Item0 Y="44" ID="1"/>
+        </Bookmarks>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../my-units/Unicode-Functions/WideStringUnit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="119"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../my-units/Threading/RunInAThreadUnit.pp"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="18"/>
+        <CursorPos Y="45"/>
+        <UsageCount Value="119"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../my-units/Algortihmic-Unit/HeapUnit.pp"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="8"/>
+        <UsageCount Value="119"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../my-units/Threading/SyncUnit.pp"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="109"/>
+        <CursorPos Y="126"/>
+        <UsageCount Value="119"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../my-units/ALogger/ALoggerUnit.pp"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="78"/>
+        <CursorPos X="32" Y="90"/>
+        <UsageCount Value="119"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../my-units/General-Purpose-Units/StreamUnit.pas"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="223"/>
+        <CursorPos X="24" Y="237"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../my-units/General-Purpose-Units/ThreadPoolUnit.pp"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="12"/>
+        <CursorPos X="3" Y="32"/>
+        <UsageCount Value="2"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../my-units/General-Purpose-Units/QueueUnit.pp"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="552"/>
+        <CursorPos Y="586"/>
+        <UsageCount Value="59"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/share/fpcsrc/rtl/inc/objpash.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="189"/>
+        <CursorPos X="23" Y="208"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../my-units/General-Purpose-Units/FileHelperUnit.pp"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="10" Y="15"/>
+        <UsageCount Value="2"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/share/fpcsrc/packages/rtl-generics/src/generics.collections.pas"/>
+        <UnitName Value="Generics.Collections"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="241"/>
+        <CursorPos X="12" Y="274"/>
+        <UsageCount Value="2"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/share/fpcsrc/rtl/objpas/fgl.pp"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="61"/>
+        <CursorPos X="15" Y="77"/>
+        <UsageCount Value="1"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../Amir/Mine/Tools/fpc/rtl/inc/objpas.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="320"/>
+        <CursorPos Y="337"/>
+        <UsageCount Value="1"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../Amir/Mine/Tools/fpc/rtl/objpas/sysutils/fina.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="494"/>
+        <CursorPos Y="528"/>
+        <UsageCount Value="1"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../Amir/Mine/Tools/fpc/rtl/inc/except.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="177"/>
+        <CursorPos Y="189"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../Amir/Mine/Tools/fpc/rtl/unix/tthread.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="126"/>
+        <CursorPos Y="143"/>
+        <UsageCount Value="1"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../Amir/Mine/Tools/fpc/rtl/objpas/classes/classes.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="236"/>
+        <CursorPos Y="260"/>
+        <UsageCount Value="1"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/share/fpcsrc/rtl/unix/cthreads.pp"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="560"/>
+        <CursorPos X="35" Y="561"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/share/fpcsrc/rtl/inc/lnfodwrf.pp"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="69"/>
+        <CursorPos X="33" Y="69"/>
+        <UsageCount Value="30"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../Amir/Mine/Tools/fpc/rtl/objpas/sysutils/sysstr.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1113"/>
+        <CursorPos Y="1131"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../Amir/Mine/Tools/fpc/rtl/objpas/sysutils/sysformt.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="333"/>
+        <CursorPos X="48" Y="333"/>
+        <UsageCount Value="1"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../Amir/Mine/Tools/fpc/rtl/unix/sysfile.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="87"/>
+        <CursorPos X="40" Y="92"/>
+        <UsageCount Value="1"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/share/fpcsrc/rtl/inc/heaptrc.pp"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="746"/>
+        <CursorPos Y="762"/>
+        <UsageCount Value="30"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../Amir/Mine/Tools/fpc/rtl/inc/generic.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="848"/>
+        <CursorPos Y="877"/>
+        <UsageCount Value="11"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/share/fpcsrc/rtl/inc/cmem.pp"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="57"/>
+        <CursorPos Y="75"/>
+        <UsageCount Value="1"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../Amir/Mine/Tools/fpc/rtl/inc/heap.inc"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="67" Y="23"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../Amir/Mine/Tools/fpc/rtl/inc/dynarr.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="100"/>
+        <CursorPos Y="117"/>
+        <UsageCount Value="1"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/share/fpcsrc/rtl/objpas/classes/classesh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1812"/>
+        <CursorPos X="15" Y="1827"/>
+        <UsageCount Value="5"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../Amir/Mine/Tools/fpc/rtl/inc/astrings.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="122"/>
+        <CursorPos X="95" Y="132"/>
+        <UsageCount Value="32"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../Amir/Mine/Tools/fpc/rtl/inc/system.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1076"/>
+        <CursorPos Y="1094"/>
+        <UsageCount Value="32"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../Amir/Mine/Tools/fpc/rtl/linux/x86_64/sighnd.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="113"/>
+        <CursorPos Y="137"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/share/fpcsrc/rtl/inc/threadh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="137"/>
+        <CursorPos X="11" Y="155"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../Amir/Mine/Tools/fpc/rtl/inc/rtti.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="109"/>
+        <CursorPos Y="127"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../Amir/Mine/Tools/fpc/rtl/inc/text.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="867"/>
+        <CursorPos Y="884"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/share/fpcsrc/rtl/unix/sysunixh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="12"/>
+        <CursorPos X="2" Y="29"/>
+        <UsageCount Value="10"/>
+      </Unit>
+    </Units>
+    <JumpHistory HistoryIndex="23">
+      <Position>
+        <Filename Value="../my-units/General-Purpose-Units/StreamUnit.pas"/>
+        <Caret Line="37" Column="14" TopLine="22"/>
+      </Position>
+      <Position>
+        <Filename Value="../my-units/General-Purpose-Units/StreamUnit.pas"/>
+        <Caret Line="247" Column="14" TopLine="231"/>
+      </Position>
+      <Position>
+        <Filename Value="../my-units/General-Purpose-Units/StreamUnit.pas"/>
+        <Caret Line="235" TopLine="227"/>
+      </Position>
+      <Position>
+        <Filename Value="../my-units/General-Purpose-Units/StreamUnit.pas"/>
+        <Caret Line="236" TopLine="227"/>
+      </Position>
+      <Position>
+        <Filename Value="../my-units/General-Purpose-Units/StreamUnit.pas"/>
+        <Caret Line="238" TopLine="227"/>
+      </Position>
+      <Position>
+        <Filename Value="../my-units/General-Purpose-Units/StreamUnit.pas"/>
+        <Caret Line="236" Column="33" TopLine="219"/>
+      </Position>
+      <Position>
+        <Filename Value="../my-units/General-Purpose-Units/StreamUnit.pas"/>
+        <Caret Line="239" Column="23" TopLine="222"/>
+      </Position>
+      <Position>
+        <Filename Value="../my-units/General-Purpose-Units/StreamUnit.pas"/>
+        <Caret Line="240" Column="25" TopLine="223"/>
+      </Position>
+      <Position>
+        <Filename Value="../my-units/General-Purpose-Units/StreamUnit.pas"/>
+        <Caret Line="241" Column="11" TopLine="223"/>
+      </Position>
+      <Position>
+        <Filename Value="../my-units/General-Purpose-Units/StreamUnit.pas"/>
+        <Caret Line="244" Column="28" TopLine="223"/>
+      </Position>
+      <Position>
+        <Filename Value="../my-units/General-Purpose-Units/StreamUnit.pas"/>
+        <Caret Line="269" Column="28" TopLine="241"/>
+      </Position>
+      <Position>
+        <Filename Value="../my-units/General-Purpose-Units/StreamUnit.pas"/>
+        <Caret Line="242" Column="27" TopLine="241"/>
+      </Position>
+      <Position>
+        <Filename Value="../my-units/General-Purpose-Units/StreamUnit.pas"/>
+        <Caret Line="241" TopLine="223"/>
+      </Position>
+      <Position>
+        <Filename Value="../my-units/General-Purpose-Units/StreamUnit.pas"/>
+        <Caret Line="241" TopLine="223"/>
+      </Position>
+      <Position>
+        <Filename Value="../my-units/General-Purpose-Units/StreamUnit.pas"/>
+        <Caret Line="241" TopLine="223"/>
+      </Position>
+      <Position>
+        <Filename Value="../my-units/General-Purpose-Units/StreamUnit.pas"/>
+        <Caret Line="240" Column="21" TopLine="223"/>
+      </Position>
+      <Position>
+        <Filename Value="../my-units/General-Purpose-Units/StreamUnit.pas"/>
+        <Caret Line="241" TopLine="223"/>
+      </Position>
+      <Position>
+        <Filename Value="StepHandlers/IndexSentencesUnit.pp"/>
+        <Caret Line="47" Column="55" TopLine="17"/>
+      </Position>
+      <Position>
+        <Filename Value="../my-units/ALogger/ALoggerUnit.pp"/>
+        <Caret Line="22" Column="11" TopLine="5"/>
+      </Position>
+      <Position>
+        <Filename Value="StepHandlers/IndexSentencesUnit.pp"/>
+        <Caret Line="47" Column="54" TopLine="17"/>
+      </Position>
+      <Position>
+        <Filename Value="../my-units/ALogger/ALoggerUnit.pp"/>
+        <Caret Line="22" Column="11" TopLine="5"/>
+      </Position>
+      <Position>
+        <Filename Value="../my-units/Pipeline/PipelineUnit.pp"/>
+        <Caret Line="198" Column="22" TopLine="182"/>
+      </Position>
+      <Position>
+        <Filename Value="../my-units/ALogger/ALoggerUnit.pp"/>
+        <Caret Line="22" Column="11" TopLine="5"/>
+      </Position>
+      <Position>
+        <Filename Value="StepHandlers/IndexSentencesUnit.pp"/>
+        <Caret Line="44" Column="26" TopLine="17"/>
+      </Position>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes ActiveMode="default">
+        <Mode Name="default">
+          <local>
+            <CommandLineParams Value="--Inputdir /home/khabardar/Projects/NGrams/NGrams/Data/WikiText-103/wikitext-103 --TmpDir /tmp/ngrams/tmp --OutputDir /tmp/ngrams/output"/>
+          </local>
+        </Mode>
+      </Modes>
+    </RunParams>
+    <HistoryLists>
+      <List Name="LaunchingApplication" Type="File" Count="1">
+        <Item1 Value="/usr/bin/gnome-terminal -t &apos;Lazarus Run Output&apos; -e &apos;$(LazarusDir)/tools/runwait.sh $(TargetCmdLine)&apos;"/>
+      </List>
+      <List Name="CommandLineParameters" Count="2">
+        <Item1 Value="--Inputdir /home/khabardar/Projects/NGrams/NGrams/Data/WikiText-103/wikitext-103 --TmpDir /tmp/ngrams/tmp --OutputDir /tmp/ngrams/output"/>
+        <Item2 Value="--Inputdir=/home/khabardar/Projects/NGrams/NGrams/Data/WikiText-103/wikitext-103 --TmpDir=/tmp/ngrams/tmp --OutputDir=/tmp/ngrams/output"/>
+      </List>
+    </HistoryLists>
+  </ProjectSession>
+</CONFIG>
