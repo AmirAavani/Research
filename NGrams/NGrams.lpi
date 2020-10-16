@@ -19,11 +19,11 @@
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
-            <Filename Value="NGrams"/>
+            <Filename Value="NGrams-Debug"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="WebEngine;libraries/WebEngineUnits;libraries/General-Purpose-Units;libraries/Unicode-Functions;libraries/TemplatesUnit;libraries/Database-Units;DB;libraries/ALogger;DataModule;libraries/DataModule;libraries/Threading;../my-units/General-Purpose-Units;../my-units/Pipeline;StepHandlers;../my-units/Unicode-Functions;../my-units/Algortihmic-Unit;../my-units/Threading;../my-units/ALogger"/>
+            <OtherUnitFiles Value="WebEngine;libraries/WebEngineUnits;libraries/General-Purpose-Units;libraries/Unicode-Functions;libraries/TemplatesUnit;libraries/Database-Units;DB;libraries/ALogger;DataModule;libraries/DataModule;libraries/Threading;../my-units/General-Purpose-Units;../my-units/ALogger;../my-units/Pipeline;StepHandlers;../my-units/Threading;../my-units/Algortihmic-Unit;../my-units/Unicode-Functions"/>
             <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <Parsing>
@@ -32,8 +32,6 @@
             </SyntaxOptions>
           </Parsing>
           <CodeGeneration>
-            <SmartLinkUnit Value="True"/>
-            <RelocatableUnit Value="True"/>
             <Checks>
               <IOChecks Value="True"/>
               <RangeChecks Value="True"/>
@@ -41,35 +39,26 @@
               <StackChecks Value="True"/>
             </Checks>
             <VerifyObjMethodCallValidity Value="True"/>
-            <Optimizations>
-              <OptimizationLevel Value="0"/>
-            </Optimizations>
           </CodeGeneration>
           <Linking>
             <Debugging>
               <DebugInfoType Value="dsDwarf2Set"/>
               <UseHeaptrc Value="True"/>
-              <UseValgrind Value="True"/>
+              <TrashVariables Value="True"/>
               <UseExternalDbgSyms Value="True"/>
             </Debugging>
-            <LinkSmart Value="True"/>
           </Linking>
-          <Other>
-            <Verbosity>
-              <ShoLineNum Value="True"/>
-            </Verbosity>
-          </Other>
         </CompilerOptions>
       </Item>
       <Item Name="Release">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
-            <Filename Value="NGrams"/>
+            <Filename Value="NGrams-Release"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="WebEngine;libraries/WebEngineUnits;libraries/General-Purpose-Units;libraries/Unicode-Functions;libraries/TemplatesUnit;libraries/Database-Units;DB;libraries/ALogger;DataModule;libraries/DataModule;libraries/Threading;../my-units/General-Purpose-Units;../my-units/Pipeline;StepHandlers;../my-units/Unicode-Functions;../my-units/Algortihmic-Unit;../my-units/Threading;../my-units/ALogger"/>
+            <OtherUnitFiles Value="WebEngine;libraries/WebEngineUnits;libraries/General-Purpose-Units;libraries/Unicode-Functions;libraries/TemplatesUnit;libraries/Database-Units;DB;libraries/ALogger;DataModule;libraries/DataModule;libraries/Threading;../my-units/General-Purpose-Units;../my-units/ALogger;../my-units/Pipeline;StepHandlers;../my-units/Threading;../my-units/Algortihmic-Unit;../my-units/Unicode-Functions"/>
             <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -104,19 +93,15 @@
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
+        <Filename Value="../my-units/ALogger/ALoggerUnit.pp"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
         <Filename Value="../my-units/Pipeline/PipelineUnit.pp"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="ValidArguments.inc"/>
-        <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="StepHandlers/IndexSentencesUnit.pp"/>
-        <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="../my-units/Unicode-Functions/WideStringUnit.pas"/>
+        <Filename Value="StepHandlers/IndexDocumentsUnit.pp"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
@@ -128,11 +113,11 @@
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="../my-units/Threading/SyncUnit.pp"/>
+        <Filename Value="../my-units/Unicode-Functions/WideStringUnit.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="../my-units/ALogger/ALoggerUnit.pp"/>
+        <Filename Value="StepHandlers/ProcessDocumentsUnit.pp"/>
         <IsPartOfProject Value="True"/>
       </Unit>
     </Units>
@@ -140,13 +125,32 @@
   <CompilerOptions>
     <Version Value="11"/>
     <Target>
-      <Filename Value="NGrams"/>
+      <Filename Value="NewNGrams"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="WebEngine;libraries/WebEngineUnits;libraries/General-Purpose-Units;libraries/Unicode-Functions;libraries/TemplatesUnit;libraries/Database-Units;DB;libraries/ALogger;DataModule;libraries/DataModule;libraries/Threading;../my-units/General-Purpose-Units;../my-units/Pipeline;StepHandlers;../my-units/Unicode-Functions;../my-units/Algortihmic-Unit;../my-units/Threading;../my-units/ALogger"/>
+      <OtherUnitFiles Value="WebEngine;libraries/WebEngineUnits;libraries/General-Purpose-Units;libraries/Unicode-Functions;libraries/TemplatesUnit;libraries/Database-Units;DB;libraries/ALogger;DataModule;libraries/DataModule;libraries/Threading;../my-units/General-Purpose-Units;../my-units/ALogger;../my-units/Pipeline;StepHandlers;../my-units/Threading;../my-units/Algortihmic-Unit;../my-units/Unicode-Functions"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
+    <Parsing>
+      <SyntaxOptions>
+        <IncludeAssertionCode Value="True"/>
+      </SyntaxOptions>
+    </Parsing>
+    <CodeGeneration>
+      <Checks>
+        <IOChecks Value="True"/>
+        <RangeChecks Value="True"/>
+        <OverflowChecks Value="True"/>
+        <StackChecks Value="True"/>
+      </Checks>
+      <VerifyObjMethodCallValidity Value="True"/>
+    </CodeGeneration>
+    <Linking>
+      <Debugging>
+        <UseHeaptrc Value="True"/>
+      </Debugging>
+    </Linking>
   </CompilerOptions>
   <Debugging>
     <Exceptions>
@@ -158,12 +162,6 @@
       </Item>
       <Item>
         <Name Value="EFOpenError"/>
-      </Item>
-      <Item>
-        <Name Value="EControlC"/>
-      </Item>
-      <Item>
-        <Name Value="RunError(217)"/>
       </Item>
     </Exceptions>
   </Debugging>

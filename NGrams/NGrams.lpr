@@ -6,9 +6,9 @@ uses
   {$IFDEF UNIX}
   cthreads,
   {$ENDIF}
-
-  Classes, ParameterManagerUnit, PipelineUnit, WideStringUnit, HeapUnit,
-  SyncUnit, RunInAThreadUnit, ALoggerUnit, IndexSentencesUnit
+  Classes, ParameterManagerUnit,
+  PipelineUnit,
+  ALoggerUnit, IndexDocumentsUnit, ProcessDocumentsUnit
   { you can add units after this };
 
 var
@@ -16,10 +16,13 @@ var
 
 begin
   Pipeline := TPipeline.Create('ngrams');
-  Pipeline.AddNewStep(@IndexSentences, 1);
+  Pipeline.AddNewStep(@IndexDocuments, 1);
+  Pipeline.AddNewStep(@ProcessDocuments, 5);
 
-  Pipeline.Run;
+  Pipeline.RunFromStep(GetRunTimeParameterManager.ValueByName['--Pipeline.FromStepID'].AsInteger);
 
   Pipeline.Free;
+  DebugLn('Done');
+
 end.
 
