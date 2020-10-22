@@ -17,7 +17,7 @@ var
 begin
   Pipeline := TPipeline.Create('ngrams');
   Pipeline.AddNewStep(@IndexDocuments, 1);
-  Pipeline.AddNewStep(@ProcessDocuments, 5);
+//  Pipeline.AddNewStep(@ProcessDocuments, 5);
 
   Pipeline.RunFromStep(GetRunTimeParameterManager.ValueByName['--Pipeline.FromStepID'].AsInteger);
 

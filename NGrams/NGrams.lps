@@ -3,19 +3,20 @@
   <ProjectSession>
     <Version Value="12"/>
     <ManyBuildModesSelection Value="Debug,Release"/>
-    <BuildModes Active="Debug"/>
+    <BuildModes Active="Release"/>
     <Units>
       <Unit>
         <Filename Value="NGrams.lpr"/>
         <IsPartOfProject Value="True"/>
-        <CursorPos X="24" Y="20"/>
-        <UsageCount Value="24"/>
+        <EditorIndex Value="14"/>
+        <CursorPos X="8" Y="19"/>
+        <UsageCount Value="20"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../my-units/General-Purpose-Units/ParameterManagerUnit.pp"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="11"/>
         <TopLine Value="227"/>
         <CursorPos X="32" Y="246"/>
         <UsageCount Value="24"/>
@@ -24,37 +25,41 @@
       <Unit>
         <Filename Value="../my-units/ALogger/ALoggerUnit.pp"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="9"/>
-        <CursorPos X="37" Y="29"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="134"/>
+        <CursorPos X="71" Y="141"/>
         <UsageCount Value="24"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../my-units/Pipeline/PipelineUnit.pp"/>
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="148"/>
-        <CursorPos X="75" Y="160"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="210"/>
+        <CursorPos X="65" Y="223"/>
         <UsageCount Value="24"/>
+        <Bookmarks Count="1">
+          <Item0 X="10" Y="121" ID="1"/>
+        </Bookmarks>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="StepHandlers/IndexDocumentsUnit.pp"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="7"/>
-        <CursorPos X="19" Y="36"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="43"/>
+        <CursorPos X="65" Y="78"/>
         <UsageCount Value="24"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../my-units/Threading/RunInAThreadUnit.pp"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="40"/>
-        <CursorPos X="81" Y="66"/>
+        <EditorIndex Value="6"/>
+        <CursorPos X="11" Y="14"/>
         <UsageCount Value="24"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../my-units/Algortihmic-Unit/HeapUnit.pp"/>
@@ -69,21 +74,24 @@
         <UsageCount Value="21"/>
       </Unit>
       <Unit>
-        <Filename Value="NGrams.lpr"/>
-        <EditorIndex Value="9"/>
-        <UsageCount Value="11"/>
+        <Filename Value="StepHandlers/ProcessDocumentsUnit.pp"/>
+        <IsPartOfProject Value="True"/>
+        <TopLine Value="13"/>
+        <CursorPos Y="33"/>
+        <UsageCount Value="20"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../my-units/General-Purpose-Units/QueueUnit.pp"/>
-        <EditorIndex Value="7"/>
-        <CursorPos X="22" Y="8"/>
+        <EditorIndex Value="12"/>
+        <TopLine Value="244"/>
+        <CursorPos X="4" Y="246"/>
         <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="ValidArguments.inc"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="13"/>
         <CursorPos X="25" Y="3"/>
         <UsageCount Value="11"/>
         <Loaded Value="True"/>
@@ -112,9 +120,9 @@
       </Unit>
       <Unit>
         <Filename Value="../my-units/Threading/ThreadSafeQueueUnit.pp"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="117"/>
-        <CursorPos Y="151"/>
+        <EditorIndex Value="8"/>
+        <TopLine Value="73"/>
+        <CursorPos X="28" Y="90"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit>
@@ -127,14 +135,17 @@
       </Unit>
       <Unit>
         <Filename Value="../my-units/Threading/SemaphoreUnit.pp"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="10"/>
+        <TopLine Value="44"/>
+        <CursorPos X="19" Y="72"/>
         <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../my-units/Threading/SyncUnit.pp"/>
-        <EditorIndex Value="5"/>
-        <TopLine Value="58"/>
-        <CursorPos X="3" Y="79"/>
+        <EditorIndex Value="9"/>
+        <TopLine Value="114"/>
+        <CursorPos X="16" Y="146"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit>
@@ -154,125 +165,186 @@
         <DefaultSyntaxHighlighter Value="C++"/>
       </Unit>
       <Unit>
-        <Filename Value="StepHandlers/ProcessDocumentsUnit.pp"/>
-        <IsPartOfProject Value="True"/>
+        <Filename Value="/usr/share/fpcsrc/packages/fcl-base/src/contnrs.pp"/>
+        <UnitName Value="Contnrs"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="111"/>
+        <CursorPos X="3" Y="131"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/share/fpcsrc/rtl/inc/threadh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="132"/>
+        <CursorPos X="11" Y="166"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/share/fpcsrc/rtl/inc/systemh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1386"/>
+        <CursorPos X="26" Y="1403"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/share/fpcsrc/rtl/objpas/sysutils/osutilsh.inc"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="17" Y="31"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/share/fpcsrc/packages/rtl-console/src/inc/crth.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="63"/>
+        <CursorPos X="11" Y="95"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../my-units/Pipeline/Pipeline.Utils.pp"/>
         <EditorIndex Value="1"/>
-        <UsageCount Value="20"/>
+        <TopLine Value="154"/>
+        <CursorPos Y="174"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../my-units/General-Purpose-Units/StreamUnit.pas"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="63"/>
+        <CursorPos X="7" Y="85"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/share/fpcsrc/packages/rtl-generics/src/generics.collections.pas"/>
+        <UnitName Value="Generics.Collections"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="124"/>
+        <CursorPos X="34" Y="145"/>
+        <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="27">
+    <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="../my-units/Pipeline/PipelineUnit.pp"/>
-        <Caret Line="139" TopLine="117"/>
+        <Caret Line="12" Column="44"/>
       </Position>
       <Position>
-        <Filename Value="../my-units/Threading/ThreadSafeQueueUnit.pp"/>
-        <Caret Line="19" Column="5"/>
-      </Position>
-      <Position>
-        <Filename Value="../my-units/Threading/ThreadSafeQueueUnit.pp"/>
-        <Caret Line="145" Column="4" TopLine="111"/>
-      </Position>
-      <Position>
-        <Filename Value="../my-units/Threading/ThreadSafeQueueUnit.pp"/>
-        <Caret Line="37" Column="5" TopLine="3"/>
-      </Position>
-      <Position>
-        <Filename Value="../my-units/Threading/ThreadSafeQueueUnit.pp"/>
-        <Caret Line="116" Column="35" TopLine="112"/>
-      </Position>
-      <Position>
-        <Filename Value="../my-units/Threading/ThreadSafeQueueUnit.pp"/>
-        <Caret Line="141" Column="3" TopLine="117"/>
-      </Position>
-      <Position>
-        <Filename Value="../my-units/Threading/SyncUnit.pp"/>
-        <Caret Line="37" Column="17" TopLine="17"/>
-      </Position>
-      <Position>
-        <Filename Value="../my-units/Threading/SyncUnit.pp"/>
-        <Caret Line="70" Column="14" TopLine="65"/>
-      </Position>
-      <Position>
-        <Filename Value="../my-units/Threading/ThreadSafeQueueUnit.pp"/>
-        <Caret Line="141" Column="3" TopLine="117"/>
-      </Position>
-      <Position>
-        <Filename Value="../my-units/Threading/ThreadSafeQueueUnit.pp"/>
-        <Caret Line="151" TopLine="117"/>
-      </Position>
-      <Position>
-        <Filename Value="../my-units/Threading/SyncUnit.pp"/>
-        <Caret Line="38" Column="17" TopLine="17"/>
-      </Position>
-      <Position>
-        <Filename Value="../my-units/Threading/SyncUnit.pp"/>
-        <Caret Line="76" Column="3" TopLine="74"/>
+        <Filename Value="NGrams.lpr"/>
+        <Caret Line="18" Column="44"/>
       </Position>
       <Position>
         <Filename Value="../my-units/Pipeline/PipelineUnit.pp"/>
-        <Caret Line="211" TopLine="191"/>
+        <Caret Line="69" Column="17" TopLine="49"/>
+      </Position>
+      <Position>
+        <Filename Value="NGrams.lpr"/>
+        <Caret Line="19" Column="8"/>
+      </Position>
+      <Position>
+        <Filename Value="StepHandlers/IndexDocumentsUnit.pp"/>
+        <Caret Line="10" Column="10"/>
+      </Position>
+      <Position>
+        <Filename Value="StepHandlers/IndexDocumentsUnit.pp"/>
+        <Caret Line="56" Column="27" TopLine="22"/>
+      </Position>
+      <Position>
+        <Filename Value="StepHandlers/IndexDocumentsUnit.pp"/>
+        <Caret Line="53" TopLine="22"/>
+      </Position>
+      <Position>
+        <Filename Value="StepHandlers/IndexDocumentsUnit.pp"/>
+        <Caret Line="54" TopLine="22"/>
+      </Position>
+      <Position>
+        <Filename Value="StepHandlers/IndexDocumentsUnit.pp"/>
+        <Caret Line="56" TopLine="24"/>
+      </Position>
+      <Position>
+        <Filename Value="StepHandlers/IndexDocumentsUnit.pp"/>
+        <Caret Line="55" TopLine="24"/>
+      </Position>
+      <Position>
+        <Filename Value="StepHandlers/IndexDocumentsUnit.pp"/>
+        <Caret Line="56" TopLine="24"/>
+      </Position>
+      <Position>
+        <Filename Value="StepHandlers/IndexDocumentsUnit.pp"/>
+        <Caret Line="55" TopLine="24"/>
+      </Position>
+      <Position>
+        <Filename Value="StepHandlers/IndexDocumentsUnit.pp"/>
+        <Caret Line="58" TopLine="26"/>
+      </Position>
+      <Position>
+        <Filename Value="StepHandlers/IndexDocumentsUnit.pp"/>
+        <Caret Line="60" TopLine="28"/>
+      </Position>
+      <Position>
+        <Filename Value="StepHandlers/IndexDocumentsUnit.pp"/>
+        <Caret Line="62" TopLine="30"/>
+      </Position>
+      <Position>
+        <Filename Value="StepHandlers/IndexDocumentsUnit.pp"/>
+        <Caret Line="61" TopLine="30"/>
+      </Position>
+      <Position>
+        <Filename Value="StepHandlers/IndexDocumentsUnit.pp"/>
+        <Caret Line="62" TopLine="30"/>
+      </Position>
+      <Position>
+        <Filename Value="StepHandlers/IndexDocumentsUnit.pp"/>
+        <Caret Line="61" TopLine="30"/>
+      </Position>
+      <Position>
+        <Filename Value="StepHandlers/IndexDocumentsUnit.pp"/>
+        <Caret Line="65" TopLine="33"/>
+      </Position>
+      <Position>
+        <Filename Value="StepHandlers/IndexDocumentsUnit.pp"/>
+        <Caret Line="66" TopLine="34"/>
+      </Position>
+      <Position>
+        <Filename Value="StepHandlers/IndexDocumentsUnit.pp"/>
+        <Caret Line="67" TopLine="35"/>
+      </Position>
+      <Position>
+        <Filename Value="StepHandlers/IndexDocumentsUnit.pp"/>
+        <Caret Line="68" TopLine="36"/>
+      </Position>
+      <Position>
+        <Filename Value="StepHandlers/IndexDocumentsUnit.pp"/>
+        <Caret Line="70" TopLine="38"/>
+      </Position>
+      <Position>
+        <Filename Value="StepHandlers/IndexDocumentsUnit.pp"/>
+        <Caret Line="72" TopLine="40"/>
+      </Position>
+      <Position>
+        <Filename Value="StepHandlers/IndexDocumentsUnit.pp"/>
+        <Caret Line="73" TopLine="41"/>
+      </Position>
+      <Position>
+        <Filename Value="StepHandlers/IndexDocumentsUnit.pp"/>
+        <Caret Line="78" Column="65" TopLine="43"/>
+      </Position>
+      <Position>
+        <Filename Value="NGrams.lpr"/>
+        <Caret Line="22" Column="3"/>
       </Position>
       <Position>
         <Filename Value="../my-units/Pipeline/PipelineUnit.pp"/>
-        <Caret Line="139" TopLine="119"/>
+        <Caret Line="52" Column="14" TopLine="33"/>
       </Position>
       <Position>
         <Filename Value="../my-units/Pipeline/PipelineUnit.pp"/>
-        <Caret Line="167" TopLine="148"/>
+        <Caret Line="241" Column="3" TopLine="210"/>
       </Position>
       <Position>
-        <Filename Value="../my-units/Threading/SyncUnit.pp"/>
-        <Caret Line="76" TopLine="68"/>
-      </Position>
-      <Position>
-        <Filename Value="../my-units/Threading/SyncUnit.pp"/>
-        <Caret Line="77" TopLine="68"/>
-      </Position>
-      <Position>
-        <Filename Value="../my-units/Threading/SyncUnit.pp"/>
-        <Caret Line="79" TopLine="68"/>
-      </Position>
-      <Position>
-        <Filename Value="../my-units/Threading/SyncUnit.pp"/>
-        <Caret Line="82" TopLine="68"/>
-      </Position>
-      <Position>
-        <Filename Value="../my-units/Threading/SyncUnit.pp"/>
-        <Caret Line="69" Column="3" TopLine="65"/>
-      </Position>
-      <Position>
-        <Filename Value="../my-units/Threading/SyncUnit.pp"/>
-        <Caret Line="38" Column="5" TopLine="9"/>
-      </Position>
-      <Position>
-        <Filename Value="../my-units/Threading/SyncUnit.pp"/>
-        <Caret Line="76" Column="16" TopLine="74"/>
-      </Position>
-      <Position>
-        <Filename Value="../my-units/Threading/SyncUnit.pp"/>
-        <Caret Line="78" Column="10" TopLine="58"/>
-      </Position>
-      <Position>
-        <Filename Value="../my-units/General-Purpose-Units/ParameterManagerUnit.pp"/>
-        <Caret Line="245" Column="76" TopLine="225"/>
-      </Position>
-      <Position>
-        <Filename Value="../my-units/General-Purpose-Units/ParameterManagerUnit.pp"/>
-        <Caret Line="241" TopLine="210"/>
-      </Position>
-      <Position>
-        <Filename Value="../my-units/General-Purpose-Units/ParameterManagerUnit.pp"/>
-        <Caret Line="27" Column="5" TopLine="7"/>
-      </Position>
-      <Position>
-        <Filename Value="../my-units/General-Purpose-Units/ParameterManagerUnit.pp"/>
-        <Caret Line="40" Column="5" TopLine="7"/>
-      </Position>
-      <Position>
-        <Filename Value="ValidArguments.inc"/>
-        <Caret Line="3" Column="25"/>
+        <Filename Value="../my-units/Pipeline/PipelineUnit.pp"/>
+        <Caret Line="51" Column="14" TopLine="32"/>
       </Position>
     </JumpHistory>
     <RunParams>
@@ -280,7 +352,7 @@
       <Modes ActiveMode="default">
         <Mode Name="default">
           <local>
-            <CommandLineParams Value="--InputDir /home/khabardar/Projects/NGrams/NGrams/Data/WikiText-103 --TmpDir /tmp/ngrams --Debug 2 --Pipeline.FromStepID 1 --OutputDir /tmp/ngrams/output"/>
+            <CommandLineParams Value="--InputDir /home/khabardar/Projects/NGrams/NGrams/Data/WikiText-103 --TmpDir /tmp/ngrams --Debug 0 --Pipeline.FromStepID 1  --OutputDir /tmp/ngrams/output"/>
           </local>
         </Mode>
       </Modes>
@@ -289,13 +361,47 @@
       <List Name="LaunchingApplication" Type="File" Count="1">
         <Item1 Value="/usr/bin/gnome-terminal -t &apos;Lazarus Run Output&apos; -e &apos;$(LazarusDir)/tools/runwait.sh $(TargetCmdLine)&apos;"/>
       </List>
-      <List Name="CommandLineParameters" Count="5">
-        <Item1 Value="--InputDir /home/khabardar/Projects/NGrams/NGrams/Data/WikiText-103 --TmpDir /tmp/ngrams --Debug 2 --Pipeline.FromStepID 1 --OutputDir /tmp/ngrams/output"/>
-        <Item2 Value="--InputDir /home/khabardar/Projects/NGrams/NGrams/Data/WikiText-103 --TmpDir /tmp/ngrams --Debug 2 --Pipeline.FromStepID 1 "/>
-        <Item3 Value="--InputDir /home/khabardar/Projects/NGrams/NGrams/Data/WikiText-103 --TmpDir /tmp/ngrams --OutputDir /tmp/ngrams/output  --Debug 2 --Pipeline.FromStepID 1"/>
-        <Item4 Value=" --InputDir /home/khabardar/Projects/NGrams/NGrams/Data/WikiText-103 --TmpDir /tmp/ngrams --Debug 2 --Pipeline.FromStepID 1 "/>
-        <Item5 Value="--InputDir /home/khabardar/Projects/NGrams/NGrams/Data/WikiText-103 --TmpDir /tmp/ngrams --Debug 2 --Pipeline.FromStepID 1"/>
+      <List Name="CommandLineParameters" Count="7">
+        <Item1 Value="--InputDir /home/khabardar/Projects/NGrams/NGrams/Data/WikiText-103 --TmpDir /tmp/ngrams --Debug 0 --Pipeline.FromStepID 1  --OutputDir /tmp/ngrams/output "/>
+        <Item2 Value="--InputDir /home/khabardar/Projects/NGrams/NGrams/Data/WikiText-103 --TmpDir /tmp/ngrams --Debug 2 --Pipeline.FromStepID 1 --OutputDir /tmp/ngrams/output --Debug 0"/>
+        <Item3 Value="--InputDir /home/khabardar/Projects/NGrams/NGrams/Data/WikiText-103 --TmpDir /tmp/ngrams --Debug 2 --Pipeline.FromStepID 1 --OutputDir /tmp/ngrams/output"/>
+        <Item4 Value="--InputDir /home/khabardar/Projects/NGrams/NGrams/Data/WikiText-103 --TmpDir /tmp/ngrams --Debug 2 --Pipeline.FromStepID 1 "/>
+        <Item5 Value="--InputDir /home/khabardar/Projects/NGrams/NGrams/Data/WikiText-103 --TmpDir /tmp/ngrams --OutputDir /tmp/ngrams/output  --Debug 2 --Pipeline.FromStepID 1"/>
+        <Item6 Value=" --InputDir /home/khabardar/Projects/NGrams/NGrams/Data/WikiText-103 --TmpDir /tmp/ngrams --Debug 2 --Pipeline.FromStepID 1 "/>
+        <Item7 Value="--InputDir /home/khabardar/Projects/NGrams/NGrams/Data/WikiText-103 --TmpDir /tmp/ngrams --Debug 2 --Pipeline.FromStepID 1"/>
       </List>
     </HistoryLists>
   </ProjectSession>
+  <Debugging>
+    <BreakPoints>
+      <Item>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="StepHandlers/IndexDocumentsUnit.pp"/>
+        <Line Value="53"/>
+      </Item>
+      <Item>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="../my-units/Pipeline/PipelineUnit.pp"/>
+        <Line Value="121"/>
+      </Item>
+      <Item>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="../my-units/Threading/ThreadSafeQueueUnit.pp"/>
+        <Line Value="68"/>
+      </Item>
+      <Item>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="../my-units/Pipeline/PipelineUnit.pp"/>
+        <Line Value="227"/>
+      </Item>
+    </BreakPoints>
+  </Debugging>
 </CONFIG>

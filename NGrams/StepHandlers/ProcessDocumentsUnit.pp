@@ -16,7 +16,6 @@ uses
 function ProcessMyDocuments(Task: TTask; AllDIndices: TInt64List): Boolean;
 var
   MyDIndices: TInt64List;
-  i: Integer;
 
 begin
   Result := True;
@@ -31,7 +30,7 @@ end;
 function ProcessDocuments(Task: TTask): Boolean;
 var
   Filename, InputDir, OutputDir: AnsiString;
-  AllDIndices: TInt64List;
+  // AllDIndices: TInt64List;
 
 begin
   InputDir:= GetRunTimeParameterManager.ValueByName['--OutputDir'].AsAnsiString;

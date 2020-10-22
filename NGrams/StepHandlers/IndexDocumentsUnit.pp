@@ -11,7 +11,7 @@ function IndexDocuments(Task: TTask): Boolean;
 
 implementation
 uses
-  StreamUnit, ParameterManagerUnit, QueueUnit, FileHelperUnit, ALoggerUnit,
+  StreamUnit, ParameterManagerUnit, ALoggerUnit,
   Pipeline.Utils;
 
 function IndexDocuments(Task: TTask): Boolean;
@@ -38,6 +38,7 @@ var
 
       Inc(CPtr);
 
+
     end;
 
     DebugLn(Format('Count: %d', [Result.Count]));
@@ -52,7 +53,7 @@ begin
   InputDir:= GetRunTimeParameterManager.ValueByName['--InputDir'].AsAnsiString;
   OutputDir:= GetRunTimeParameterManager.ValueByName['--OutputDir'].AsAnsiString;
   DebugLn(Format('%d Task.ID: %d InputDir = %s OutputDir = %s',
-    [ThreadID, Task.ID, InputDir, OutputDir]));
+    [ThreadID, 1 {Task.ID}, InputDir, OutputDir]));
 
   Filename := ConcatPaths([InputDir, 'wiki.train.tokens']);
   begin
@@ -74,7 +75,7 @@ begin
     DocumentStartingPositions.Free;
   end;
 
-  DebugLn(Format('%d Task.ID: %d is Done', [ThreadID, Task.ID]));
+  DebugLn(Format('%d Task.ID: %d is Done', [ThreadID, 1{Task.ID}]));
   Result := True;
 end;
 
