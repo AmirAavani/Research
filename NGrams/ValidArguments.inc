@@ -2,4 +2,4 @@ ValidArgumentsInfo: array of AnsiString =
   ('--InputDir:AnsiString', '--TmpDir:AnsiString', '--OutputDir:AnsiString',
   '--Debug:Integer', '--Pipeline.FromStepID:Integer');
 ValidArgumentsValues: array of AnsiString =
-  ('', '', '', '0', '1');
+  ('', '', '', '-1', '1');

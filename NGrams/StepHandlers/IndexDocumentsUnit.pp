@@ -50,10 +50,14 @@ var
   DocumentStartingPositions: TInt64List;
 
 begin
+  DebugLn(Format('%d Task.ID: %d is Done', [ThreadID, Task.ID]));
+
   InputDir:= GetRunTimeParameterManager.ValueByName['--InputDir'].AsAnsiString;
   OutputDir:= GetRunTimeParameterManager.ValueByName['--OutputDir'].AsAnsiString;
   DebugLn(Format('%d Task.ID: %d InputDir = %s OutputDir = %s',
-    [ThreadID, 1 {Task.ID}, InputDir, OutputDir]));
+    [ThreadID, Task.ID, InputDir, OutputDir]));
+  WriteLn(Format('Task.ID: %d InputDir = %s OutputDir = %s',
+    [Task.ID, InputDir, OutputDir]));
 
   Filename := ConcatPaths([InputDir, 'wiki.train.tokens']);
   begin
@@ -75,7 +79,7 @@ begin
     DocumentStartingPositions.Free;
   end;
 
-  DebugLn(Format('%d Task.ID: %d is Done', [ThreadID, 1{Task.ID}]));
+  WriteLn(Format('%d Task.ID: %d is Done', [ThreadID, Task.ID]));
   Result := True;
 end;
 
