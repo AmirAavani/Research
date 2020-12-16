@@ -5,20 +5,17 @@ unit IndexDocumentsUnit;
 interface
 
 uses
-  Classes, SysUtils, PipelineUnit;
+  Classes, SysUtils, PipelineUnit, Pipeline.Types;
 
-function IndexDocuments(Task: TTask): Boolean;
+function IndexDocuments(Task: TTask; Args: TPointerArray): Boolean;
 
 implementation
 uses
-  StreamUnit, ParameterManagerUnit, ALoggerUnit,
+  ParameterManagerUnit, ALoggerUnit,
   Pipeline.Utils;
 
-function IndexDocuments(Task: TTask): Boolean;
-var
-  Data: AnsiString;
-
-  function GetDocumentStartingPositions: TInt64List;
+function IndexDocuments(Task: TTask; Args: TPointerArray): Boolean;
+  function GetDocumentStartingPositions(const Data: AnsiString): TInt64List;
   var
     CPtr: PChar;
     i: Integer;
@@ -45,39 +42,29 @@ var
   end;
 
 var
-  Stream: TMyTextStream;
-  Filename, InputDir, OutputDir: AnsiString;
+  InputDir, OutputDir, TmpDir: AnsiString;
   DocumentStartingPositions: TInt64List;
+  Filename: AnsiString;
+  Data: AnsiString;
 
 begin
   DebugLn(Format('%d Task.ID: %d is Done', [ThreadID, Task.ID]));
 
   InputDir:= GetRunTimeParameterManager.ValueByName['--InputDir'].AsAnsiString;
+  TmpDir:= GetRunTimeParameterManager.ValueByName['--TmpDir'].AsAnsiString;
   OutputDir:= GetRunTimeParameterManager.ValueByName['--OutputDir'].AsAnsiString;
-  DebugLn(Format('%d Task.ID: %d InputDir = %s OutputDir = %s',
-    [ThreadID, Task.ID, InputDir, OutputDir]));
-  WriteLn(Format('Task.ID: %d InputDir = %s OutputDir = %s',
-    [Task.ID, InputDir, OutputDir]));
+  DebugLn(Format('%d Task.ID: %d InputDir = %s OutputDir = %s TmpDir = %s',
+    [ThreadID, Task.ID, InputDir, OutputDir, TmpDir]));
 
-  Filename := ConcatPaths([InputDir, 'wiki.train.tokens']);
-  begin
-    DebugLn(Format('%d Filename: %s', [ThreadID, Filename]));
-    Stream := TMyTextStream.Create(TFileStream.Create(
-      Filename, fmOpenRead),
-      True
-    );
-    DebugLn(Format('+Filename: %s', [Filename]));
-    Data := Stream.ReadAll;
-    Stream.Free;
-    DebugLn(Format('Len(Data): %d', [Length(Data)]));
+  Data := PAnsiString(Args[0])^;
+  DebugLn(Format('Len(Data): %d', [Length(Data)]));
 
-    DocumentStartingPositions := GetDocumentStartingPositions;
+  DocumentStartingPositions := GetDocumentStartingPositions(Data);
 
-    Filename := ConcatPaths([OutputDir, 'wiki.train.tokens.sentence.index']);
-    DocumentStartingPositions.SaveToFile(Filename);
+  Filename := ConcatPaths([TmpDir, 'wiki.train.tokens.sentence.index']);
+  DocumentStartingPositions.SaveToFile(Filename);
 
-    DocumentStartingPositions.Free;
-  end;
+  DocumentStartingPositions.Free;
 
   WriteLn(Format('%d Task.ID: %d is Done', [ThreadID, Task.ID]));
   Result := True;
