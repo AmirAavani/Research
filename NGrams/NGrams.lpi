@@ -23,7 +23,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="WebEngine;libraries/WebEngineUnits;libraries/General-Purpose-Units;libraries/Unicode-Functions;libraries/TemplatesUnit;libraries/Database-Units;DB;libraries/ALogger;DataModule;libraries/DataModule;libraries/Threading;../my-units/General-Purpose-Units;../my-units/ALogger;../my-units/Pipeline;StepHandlers;../my-units/Threading;../my-units/Algortihmic-Unit;../my-units/Unicode-Functions"/>
+            <OtherUnitFiles Value="WebEngine;libraries/WebEngineUnits;libraries/General-Purpose-Units;libraries/Unicode-Functions;libraries/TemplatesUnit;libraries/Database-Units;DB;libraries/ALogger;DataModule;libraries/DataModule;libraries/Threading;../my-units/General-Purpose-Units;../my-units/ALogger;../my-units/Pipeline;StepHandlers;../my-units/Threading;../my-units/Algortihmic-Unit;../my-units/Unicode-Functions;/usr/local/share/src/fpc-3.3.1/fpc/packages/pthreads/src/;/usr/local/share/src/fpc-3.3.1/fpc/packages/fcl-base/src/;/usr/local/share/src/fpc-3.3.1/fpc/packages/rtl-console/src/unix/;Protos/RawData;../my-units/PB2PAS"/>
             <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <Parsing>
@@ -40,25 +40,17 @@
             </Checks>
             <VerifyObjMethodCallValidity Value="True"/>
           </CodeGeneration>
-          <Linking>
-            <Debugging>
-              <DebugInfoType Value="dsDwarf2Set"/>
-              <UseHeaptrc Value="True"/>
-              <TrashVariables Value="True"/>
-              <UseExternalDbgSyms Value="True"/>
-            </Debugging>
-          </Linking>
         </CompilerOptions>
       </Item>
       <Item Name="Release">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
-            <Filename Value="NGrams"/>
+            <Filename Value="NGrams-Release"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="WebEngine;libraries/WebEngineUnits;libraries/General-Purpose-Units;libraries/Unicode-Functions;libraries/TemplatesUnit;libraries/Database-Units;DB;libraries/ALogger;DataModule;libraries/DataModule;libraries/Threading;../my-units/General-Purpose-Units;../my-units/ALogger;../my-units/Pipeline;StepHandlers;../my-units/Threading;../my-units/Algortihmic-Unit;../my-units/Unicode-Functions"/>
+            <OtherUnitFiles Value="../my-units/General-Purpose-Units;../my-units/ALogger;../my-units/Pipeline;StepHandlers;../my-units/Threading;../my-units/Algortihmic-Unit;../my-units/Unicode-Functions;Protos/RawData;../my-units/PB2PAS"/>
             <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -68,6 +60,9 @@
             </Optimizations>
           </CodeGeneration>
           <Linking>
+            <Debugging>
+              <UseValgrind Value="True"/>
+            </Debugging>
             <LinkSmart Value="True"/>
           </Linking>
         </CompilerOptions>
@@ -114,24 +109,54 @@
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="StepHandlers/ProcessDocumentsUnit.pp"/>
+        <Filename Value="StepHandlers/ExtractSentencesUnit.pp"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../my-units/Pipeline/Pipeline.Types.pp"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/share/src/fpc-3.3.1/fpc/packages/pthreads/src/pthreads.pp"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/share/src/fpc-3.3.1/fpc/packages/fcl-base/src/contnrs.pp"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Contnrs"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/share/src/fpc-3.3.1/fpc/packages/rtl-console/src/unix/crt.pp"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Crt"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Protos/RawData/SentenceUnit.pp"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../my-units/PB2PAS/ProtoHelperUnit.pp"/>
         <IsPartOfProject Value="True"/>
       </Unit>
     </Units>
+    <Debugger>
+      <Backend Value="{DC737B59-B3EC-47E8-BBFA-8F8BE33D2F0D}"/>
+    </Debugger>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="11"/>
     <Target>
-      <Filename Value="NewNGrams"/>
+      <Filename Value="NGrams"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="WebEngine;libraries/WebEngineUnits;libraries/General-Purpose-Units;libraries/Unicode-Functions;libraries/TemplatesUnit;libraries/Database-Units;DB;libraries/ALogger;DataModule;libraries/DataModule;libraries/Threading;../my-units/General-Purpose-Units;../my-units/ALogger;../my-units/Pipeline;StepHandlers;../my-units/Threading;../my-units/Algortihmic-Unit;../my-units/Unicode-Functions"/>
+      <OtherUnitFiles Value="../my-units/General-Purpose-Units;../my-units/ALogger;../my-units/Pipeline;StepHandlers;../my-units/Threading;../my-units/Algortihmic-Unit;../my-units/Unicode-Functions;Protos/RawData;../my-units/PB2PAS"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>
       <SyntaxOptions>
         <IncludeAssertionCode Value="True"/>
+        <AllowLabel Value="False"/>
       </SyntaxOptions>
     </Parsing>
     <CodeGeneration>
@@ -145,9 +170,15 @@
     </CodeGeneration>
     <Linking>
       <Debugging>
-        <UseHeaptrc Value="True"/>
+        <UseValgrind Value="True"/>
+        <UseExternalDbgSyms Value="True"/>
       </Debugging>
     </Linking>
+    <Other>
+      <Verbosity>
+        <ShoLineNum Value="True"/>
+      </Verbosity>
+    </Other>
   </CompilerOptions>
   <Debugging>
     <Exceptions>

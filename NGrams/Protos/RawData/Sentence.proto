@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package raw_data;
+
+message Sentence {
+  int32 ID = 1;
+  int32 DocIndex = 2;
+  int32 SentenceIndex = 3;
+  repeated string tokens = 4;
+}

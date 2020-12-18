@@ -11,8 +11,7 @@ function IndexDocuments(Task: TTask; Args: TPointerArray): Boolean;
 
 implementation
 uses
-  ParameterManagerUnit, ALoggerUnit,
-  Pipeline.Utils;
+  ParameterManagerUnit, ALoggerUnit, Pipeline.Utils;
 
 function IndexDocuments(Task: TTask; Args: TPointerArray): Boolean;
   function GetDocumentStartingPositions(const Data: AnsiString): TInt64List;
@@ -30,7 +29,7 @@ function IndexDocuments(Task: TTask; Args: TPointerArray): Boolean;
         and ((CPtr+3)^ = #$20) and ((CPtr+4)^ <> #$3d) then
       begin
         Result.Add(i);
-        DebugLnEveryN(100, Format('Index[%d]: %d', [Result.Count - 1, i]), 2);
+        FMTDebugLnEveryN(100, 'Index[%d]: %d', [Result.Count - 1, i], 2);
       end;
 
       Inc(CPtr);
@@ -38,7 +37,7 @@ function IndexDocuments(Task: TTask; Args: TPointerArray): Boolean;
 
     end;
 
-    DebugLn(Format('Count: %d', [Result.Count]));
+    FMTDebugLn('Count: %d', [Result.Count]);
   end;
 
 var
@@ -48,7 +47,7 @@ var
   Data: AnsiString;
 
 begin
-  DebugLn(Format('%d Task.ID: %d is Done', [ThreadID, Task.ID]));
+  FMTDebugLn('%d Task.ID: %d is Done', [ThreadID, Task.ID]);
 
   InputDir:= GetRunTimeParameterManager.ValueByName['--InputDir'].AsAnsiString;
   TmpDir:= GetRunTimeParameterManager.ValueByName['--TmpDir'].AsAnsiString;
@@ -57,7 +56,7 @@ begin
     [ThreadID, Task.ID, InputDir, OutputDir, TmpDir]));
 
   Data := PAnsiString(Args[0])^;
-  DebugLn(Format('Len(Data): %d', [Length(Data)]));
+  FMTDebugLn('Len(Data): %d', [Length(Data)]);
 
   DocumentStartingPositions := GetDocumentStartingPositions(Data);
 

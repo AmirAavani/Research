@@ -6,9 +6,9 @@ uses
   {$IFDEF UNIX}
   cthreads,
   {$ENDIF}
-  Classes, sysutils, ParameterManagerUnit,
-  PipelineUnit, StreamUnit,
-  ALoggerUnit, IndexDocumentsUnit, ProcessDocumentsUnit, Pipeline.Types
+  Classes, sysutils, ParameterManagerUnit, PipelineUnit, StreamUnit,
+  ALoggerUnit, IndexDocumentsUnit, ExtractSentencesUnit, SentenceUnit,
+  Pipeline.Types, ProtoHelperUnit
   { you can add units after this };
 
 var
@@ -20,19 +20,19 @@ var
 begin
   InputDir:= GetRunTimeParameterManager.ValueByName['--InputDir'].AsAnsiString;
   Filename := ConcatPaths([InputDir, 'wiki.train.tokens']);
-  DebugLn(Format('%d Filename: %s', [ThreadID, Filename]));
+  FMTDebugLn('%d Filename: %s', [ThreadID, Filename]);
   Stream := TMyTextStream.Create(TFileStream.Create(
     Filename, fmOpenRead),
     True
   );
-  DebugLn(Format('+Filename: %s', [Filename]));
+  FMTDebugLn('+Filename: %s', [Filename]);
   Data := Stream.ReadAll;
   Stream.Free;
-  DebugLn(Format('Len(Data): %d', [Length(Data)]));
+  FMTDebugLn('Len(Data): %d', [Length(Data)]);
 
   Pipeline := TPipeline.Create('ngrams');
   Pipeline.AddNewStep(@IndexDocuments, 1, [@Data]);
-  Pipeline.AddNewStep(@ProcessDocuments, 10, [@Data]);
+  Pipeline.AddNewStep(@ExtractSentences, 10, [@Data]);
 
   TPipeline.Run(Pipeline);
 
