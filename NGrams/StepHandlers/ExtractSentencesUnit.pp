@@ -5,26 +5,97 @@ unit ExtractSentencesUnit;
 interface
 
 uses
-  Classes, SysUtils, Pipeline.Types, PipelineUnit;
+  Classes, SysUtils, Pipeline.TypesUnit, PipelineUnit;
 
 function ExtractSentences(Task: TTask; Args: TPointerArray): Boolean;
 
 implementation
 uses
-  Pipeline.Utils, ParameterManagerUnit, OnceUnit, ALoggerUnit;
+  Pipeline.Utils, ParameterManagerUnit, OnceUnit, ALoggerUnit, ElfHashUnit,
+  SentenceUnit, StringUnit, ProtoStreamUnit, Pipeline.IOUnit, PathHelperUnit;
 
 function ExtractMySentences(Task: TTask; constref Data: AnsiString;
     constref AllDIndices: TInt64List): Boolean;
 
-  procedure ExtractSentecesFromDoc(Start, Fin: PChar);
+  function ProcessSentence(DocIndex, SIndex: UInt32; Start, Last: PChar): TSentence;
+  var
+    pc: PChar;
+    CurChar: Char;
+    CurToken: AnsiString;
 
   begin
+    Result := TSentence.Create;
+    Result.ID := ElfHash(Start, Last);
+    Result.DocIndex := DocIndex;
+    Result.SentenceIndex := SIndex;
+    pc := Start;
+
+    CurToken := '';
+    while pc <= Last do
+    begin
+       CurChar := pc^;
+       Inc(pc);
+       if CurChar = ' ' then
+       begin
+         if CurToken <> '' then
+         begin
+           Result.AllTokens.Add(CurToken);
+           CurToken := '';
+         end;
+         Continue;
+
+       end;
+       CurToken += CurChar;
+    end;
 
   end;
 
+  procedure ProcessDoc(DocIndex: UInt32; Start, Last: PChar; Writer: TPipelineWriter);
+  var
+    Current, Prev, Next: PChar;
+    SIndex: UInt32;
+    StartSentence: PChar;
+    BraceBalance: Integer;
+    Sentence: TSentence;
+
+  begin
+    Prev := Start;
+    Current := Start + 1;
+    Next := Current + 1;
+    BraceBalance := 0;
+
+    StartSentence := Current;
+    SIndex := 0;
+    while Current <= Last do
+    begin
+       if Current^ = '(' then
+         Inc(BraceBalance)
+       else if Current^ = ')' then
+         Dec(BraceBalance);
+
+      if Current^ = sLineBreak then
+        StartSentence := Next
+      else if (BraceBalance = 0) and (Prev^ = ' ') and (Current^ = '.') and (Next^ = ' ') then
+      begin
+        Sentence := ProcessSentence(DocIndex, SIndex, StartSentence, Current);
+        StartSentence := Next;
+        Inc(SIndex);
+
+      end;
+      Inc(Prev);
+      Inc(Current);
+      Inc(Next);
+    end;
+    if Current <> StartSentence then
+    begin
+      Sentence := ProcessSentence(DocIndex, SIndex, StartSentence, Current);
+//      Sentence.SaveToStream(woutpu);
+    end;
+  end;
+
 var
-  Start, Fin: Integer;
-  DocIndex: Integer;
+  Start, Last: Integer;
+  DocIndex: UInt32;
 
 begin
   Result := True;
@@ -34,15 +105,15 @@ begin
   while DocIndex < AllDIndices.Count - 1 do
   begin
      Start := AllDIndices[DocIndex];
-     Fin := Length(Data);
+     Last := Length(Data);
      if DocIndex <> AllDIndices.Count - 1 then
-        Fin := AllDIndices[DocIndex + 1] - 1;
-     ExtractSentecesFromDoc(@Data[1] + Start - 1, @Data[1] + Fin - 1);
+        Last := AllDIndices[DocIndex + 1] - 1;
+     ProcessDoc(DocIndex, @Data[1] + Start - 1, @Data[1] + Last, nil);
 
     Inc(DocIndex, Task.Count);
 
      FMTDebugLn('Task.ID: %d DocIndex: %d', [Task.ID, DocIndex]);
-     if 1000 < DocIndex then
+     if 10 < DocIndex then
         break;
 //    FMTDebugLnEveryN(100, 'Task.ID: %d DocIndex: %d', [Task.ID, DocIndex]);
   end;
@@ -58,12 +129,15 @@ var
   InputDir, OutputDir: AnsiString;
   Data: AnsiString;
   Delta: Integer;
+  OutputFiles, MyOutputFiles: TAnsiStringList;
 
 begin
   InputDir:= GetRunTimeParameterManager.ValueByName['--TmpDir'].AsAnsiString;
   OutputDir:= GetRunTimeParameterManager.ValueByName['--TmpDir'].AsAnsiString;
-  FMTDebugLn('Task.ID: %d InputDir = %s OutputDir = %s',
-    [Task.ID, InputDir, OutputDir]);
+  OutputFiles := Task.ExtractModule(
+    JoinPath(OutputDir, Format('Step2/shard@32/doc@%d', [Task.Count])));
+  FMTDebugLn('Task.ID: %d InputDir = %s OutputPattern = %s ',
+    [Task.ID, InputDir, OutputFiles.ToString]);
 
   LoadAllDIndicesOnce.Run;
 
@@ -74,8 +148,6 @@ begin
   FMTDebugLn('Length(Data): %d', [Length(Data)]);
 
   Result := ExtractMySentences(Task, Data, AllDIndices);
-
-  AllDIndices.Free;
 
 end;
 

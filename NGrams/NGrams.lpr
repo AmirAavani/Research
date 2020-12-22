@@ -8,7 +8,7 @@ uses
   {$ENDIF}
   Classes, sysutils, ParameterManagerUnit, PipelineUnit, StreamUnit,
   ALoggerUnit, IndexDocumentsUnit, ExtractSentencesUnit, SentenceUnit,
-  Pipeline.Types, ProtoHelperUnit
+  Pipeline.TypesUnit, ProtoHelperUnit, FastMD5Unit, Pipeline.IOUnit
   { you can add units after this };
 
 var
@@ -32,7 +32,7 @@ begin
 
   Pipeline := TPipeline.Create('ngrams');
   Pipeline.AddNewStep(@IndexDocuments, 1, [@Data]);
-  Pipeline.AddNewStep(@ExtractSentences, 10, [@Data]);
+  Pipeline.AddNewStep(@ExtractSentences, 1, [@Data]);
 
   TPipeline.Run(Pipeline);
 

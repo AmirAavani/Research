@@ -5,7 +5,7 @@ unit IndexDocumentsUnit;
 interface
 
 uses
-  Classes, SysUtils, PipelineUnit, Pipeline.Types;
+  Classes, SysUtils, PipelineUnit, Pipeline.TypesUnit;
 
 function IndexDocuments(Task: TTask; Args: TPointerArray): Boolean;
 
