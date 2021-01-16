@@ -7,7 +7,7 @@ uses
   cthreads,
   {$ENDIF}
   Classes, sysutils, ParameterManagerUnit, PipelineUnit, StreamUnit,
-  ALoggerUnit, IndexDocumentsUnit, ExtractSentencesUnit, SentenceUnit,
+  ALoggerUnit, IndexDocumentsUnit, ExtractParagraphsUnit, SentenceUnit,
   Pipeline.TypesUnit, ProtoHelperUnit, FastMD5Unit, Pipeline.IOUnit
   { you can add units after this };
 
@@ -21,6 +21,7 @@ begin
   InputDir:= GetRunTimeParameterManager.ValueByName['--InputDir'].AsAnsiString;
   Filename := ConcatPaths([InputDir, 'wiki.train.tokens']);
   FMTDebugLn('%d Filename: %s', [ThreadID, Filename]);
+
   Stream := TMyTextStream.Create(TFileStream.Create(
     Filename, fmOpenRead),
     True
@@ -32,7 +33,7 @@ begin
 
   Pipeline := TPipeline.Create('ngrams');
   Pipeline.AddNewStep(@IndexDocuments, 1, [@Data]);
-  Pipeline.AddNewStep(@ExtractSentences, 1, [@Data]);
+  Pipeline.AddNewStep(@ExtractParagraphs, 1, [@Data]);
 
   TPipeline.Run(Pipeline);
 

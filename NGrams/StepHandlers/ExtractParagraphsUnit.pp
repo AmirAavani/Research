@@ -1,4 +1,4 @@
-unit ExtractSentencesUnit;
+unit ExtractParagraphsUnit;
 
 {$mode objfpc}{$H+}
 
@@ -7,15 +7,15 @@ interface
 uses
   Classes, SysUtils, Pipeline.TypesUnit, PipelineUnit;
 
-function ExtractSentences(Task: TTask; Args: TPointerArray): Boolean;
+function ExtractParagraphs(Task: TTask; Args: TPointerArray): Boolean;
 
 implementation
 uses
   Pipeline.Utils, ParameterManagerUnit, OnceUnit, ALoggerUnit, ElfHashUnit,
   SentenceUnit, StringUnit, ProtoStreamUnit, Pipeline.IOUnit, PathHelperUnit;
 
-function ExtractMySentences(Task: TTask; constref Data: AnsiString;
-    constref AllDIndices: TInt64List): Boolean;
+function ExtractParagraphs(Task: TTask; constref Data: AnsiString;
+    constref AllDIndices: TInt64List; Writer: TPipelineWriter): Boolean;
 
   function ProcessSentence(DocIndex, SIndex: UInt32; Start, Last: PChar): TSentence;
   var
@@ -35,17 +35,20 @@ function ExtractMySentences(Task: TTask; constref Data: AnsiString;
     begin
        CurChar := pc^;
        Inc(pc);
-       if CurChar = ' ' then
+
+       if CurChar = sLineBreak then
        begin
          if CurToken <> '' then
          begin
            Result.AllTokens.Add(CurToken);
            CurToken := '';
+
          end;
          Continue;
 
        end;
        CurToken += CurChar;
+
     end;
 
   end;
@@ -89,8 +92,10 @@ function ExtractMySentences(Task: TTask; constref Data: AnsiString;
     if Current <> StartSentence then
     begin
       Sentence := ProcessSentence(DocIndex, SIndex, StartSentence, Current);
-//      Sentence.SaveToStream(woutpu);
+      Writer.WriteProto(Sentence);
+
     end;
+
   end;
 
 var
@@ -124,20 +129,23 @@ var
   LoadAllDIndicesOnce: TOnce;
   AllDIndices: TInt64List;
 
-function ExtractSentences(Task: TTask; Args: TPointerArray): Boolean;
+function ExtractParagraphs(Task: TTask; Args: TPointerArray): Boolean;
 var
   InputDir, OutputDir: AnsiString;
   Data: AnsiString;
   Delta: Integer;
-  OutputFiles, MyOutputFiles: TAnsiStringList;
+  MyOutputFiles: TAnsiStringList;
+  Writer: TPipelineWriter;
 
 begin
   InputDir:= GetRunTimeParameterManager.ValueByName['--TmpDir'].AsAnsiString;
   OutputDir:= GetRunTimeParameterManager.ValueByName['--TmpDir'].AsAnsiString;
-  OutputFiles := Task.ExtractModule(
-    JoinPath(OutputDir, Format('Step2/shard@32/doc@%d', [Task.Count])));
-  FMTDebugLn('Task.ID: %d InputDir = %s OutputPattern = %s ',
-    [Task.ID, InputDir, OutputFiles.ToString]);
+  MyOutputFiles := Task.ExtractModule(
+    JoinPath(OutputDir, Format('Step2/part@32', [Task.Count])));
+  FMTDebugLn('Task.ID: %d InputDir = %s OutputFiles = %s ',
+    [Task.ID, InputDir, MyOutputFiles.ToString]);
+
+  Writer := TPipelineWriter.Create(MyOutputFiles[0]);
 
   LoadAllDIndicesOnce.Run;
 
@@ -147,7 +155,11 @@ begin
   Data := PAnsiString(Args[0])^;
   FMTDebugLn('Length(Data): %d', [Length(Data)]);
 
-  Result := ExtractMySentences(Task, Data, AllDIndices);
+  Result := ExtractParagraphs(Task, Data, AllDIndices, Writer);
+
+  Writer.Free;
+
+  MyOutputFiles.Free;
 
 end;
 
