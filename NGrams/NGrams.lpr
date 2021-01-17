@@ -7,7 +7,7 @@ uses
   cthreads,
   {$ENDIF}
   Classes, sysutils, ParameterManagerUnit, PipelineUnit, StreamUnit,
-  ALoggerUnit, IndexDocumentsUnit, ExtractParagraphsUnit, SentenceUnit,
+  ALoggerUnit, IndexDocumentsUnit, ExtractParagraphsUnit,
   Pipeline.TypesUnit, ProtoHelperUnit, FastMD5Unit, Pipeline.IOUnit
   { you can add units after this };
 

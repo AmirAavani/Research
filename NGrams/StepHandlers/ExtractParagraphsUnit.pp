@@ -12,22 +12,22 @@ function ExtractParagraphs(Task: TTask; Args: TPointerArray): Boolean;
 implementation
 uses
   Pipeline.Utils, ParameterManagerUnit, OnceUnit, ALoggerUnit, ElfHashUnit,
-  SentenceUnit, StringUnit, ProtoStreamUnit, Pipeline.IOUnit, PathHelperUnit;
+  ParagraphUnit, StringUnit, ProtoStreamUnit, Pipeline.IOUnit, PathHelperUnit;
 
 function ExtractParagraphs(Task: TTask; constref Data: AnsiString;
     constref AllDIndices: TInt64List; Writer: TPipelineWriter): Boolean;
 
-  function ProcessSentence(DocIndex, SIndex: UInt32; Start, Last: PChar): TSentence;
+  function ProcessParagraph(DocIndex, PIndex: UInt32; Start, Last: PChar): TParagraph;
   var
     pc: PChar;
     CurChar: Char;
     CurToken: AnsiString;
 
   begin
-    Result := TSentence.Create;
+    Result := TParagraph.Create;
     Result.ID := ElfHash(Start, Last);
     Result.DocIndex := DocIndex;
-    Result.SentenceIndex := SIndex;
+    Result.ParagraphIndex := PIndex;
     pc := Start;
 
     CurToken := '';
@@ -40,7 +40,7 @@ function ExtractParagraphs(Task: TTask; constref Data: AnsiString;
        begin
          if CurToken <> '' then
          begin
-           Result.AllTokens.Add(CurToken);
+           Result.MutableTokens.Add(CurToken);
            CurToken := '';
 
          end;
@@ -56,10 +56,10 @@ function ExtractParagraphs(Task: TTask; constref Data: AnsiString;
   procedure ProcessDoc(DocIndex: UInt32; Start, Last: PChar; Writer: TPipelineWriter);
   var
     Current, Prev, Next: PChar;
-    SIndex: UInt32;
-    StartSentence: PChar;
+    PIndex: UInt32;
+    StartParagraph: PChar;
     BraceBalance: Integer;
-    Sentence: TSentence;
+    Paragraph: TParagraph;
 
   begin
     Prev := Start;
@@ -67,8 +67,8 @@ function ExtractParagraphs(Task: TTask; constref Data: AnsiString;
     Next := Current + 1;
     BraceBalance := 0;
 
-    StartSentence := Current;
-    SIndex := 0;
+    StartParagraph := Current;
+    PIndex := 0;
     while Current <= Last do
     begin
        if Current^ = '(' then
@@ -77,22 +77,22 @@ function ExtractParagraphs(Task: TTask; constref Data: AnsiString;
          Dec(BraceBalance);
 
       if Current^ = sLineBreak then
-        StartSentence := Next
+        StartParagraph := Next
       else if (BraceBalance = 0) and (Prev^ = ' ') and (Current^ = '.') and (Next^ = ' ') then
       begin
-        Sentence := ProcessSentence(DocIndex, SIndex, StartSentence, Current);
-        StartSentence := Next;
-        Inc(SIndex);
+        Paragraph := ProcessParagraph(DocIndex, PIndex, StartParagraph, Current);
+        StartParagraph := Next;
+        Inc(PIndex);
 
       end;
       Inc(Prev);
       Inc(Current);
       Inc(Next);
     end;
-    if Current <> StartSentence then
+    if Current <> StartParagraph then
     begin
-      Sentence := ProcessSentence(DocIndex, SIndex, StartSentence, Current);
-      Writer.WriteProto(Sentence);
+      Paragraph := ProcessParagraph(DocIndex, PIndex, StartParagraph, Current);
+      Writer.WriteProto(Paragraph);
 
     end;
 

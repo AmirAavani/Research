@@ -47,7 +47,7 @@ var
   Data: AnsiString;
 
 begin
-  FMTDebugLn('%d Task.ID: %d is Done', [ThreadID, Task.ID]);
+  FMTDebugLn('%d Task.ID: %d is Running', [ThreadID, Task.ID]);
 
   InputDir:= GetRunTimeParameterManager.ValueByName['--InputDir'].AsAnsiString;
   TmpDir:= GetRunTimeParameterManager.ValueByName['--TmpDir'].AsAnsiString;
