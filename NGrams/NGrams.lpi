@@ -109,7 +109,7 @@
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="StepHandlers/ExtractSentencesUnit.pp"/>
+        <Filename Value="StepHandlers/ExtractParagraphsUnit.pp"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
