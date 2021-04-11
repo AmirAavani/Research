@@ -14,6 +14,7 @@ uses
   ParameterManagerUnit, ALoggerUnit, Pipeline.Utils;
 
 function IndexDocuments(Task: TTask; Args: TPointerArray): Boolean;
+{
   function GetDocumentStartingPositions(const Data: AnsiString): TInt64List;
   var
     CPtr: PChar;
@@ -67,6 +68,10 @@ begin
 
   WriteLn(Format('%d Task.ID: %d is Done', [ThreadID, Task.ID]));
   Result := True;
+end;
+}
+begin
+
 end;
 
 end.

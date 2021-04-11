@@ -13,7 +13,7 @@ implementation
 uses
   Pipeline.Utils, ParameterManagerUnit, OnceUnit, ALoggerUnit, ElfHashUnit,
   ParagraphUnit, StringUnit, ProtoStreamUnit, Pipeline.IOUnit, PathHelperUnit;
-
+{
 function ExtractParagraphs(Task: TTask; constref Data: AnsiString;
     constref AllDIndices: TInt64List; Writer: TPipelineWriter): Boolean;
 
@@ -128,9 +128,9 @@ end;
 var
   LoadAllDIndicesOnce: TOnce;
   AllDIndices: TInt64List;
-
+}
 function ExtractParagraphs(Task: TTask; Args: TPointerArray): Boolean;
-var
+{var
   InputDir, OutputDir: AnsiString;
   Data: AnsiString;
   Delta: Integer;
@@ -162,7 +162,11 @@ begin
   MyOutputFiles.Free;
 
 end;
+}
+begin
 
+end;
+ {
 procedure LoadAllDIndices(Arguments: TPointerArray);
 var
   InputDir, Filename: AnsiString;
@@ -182,6 +186,6 @@ initialization
 finalization
   LoadAllDIndicesOnce.Free;
   AllDIndices.Free;
-
+}
 end.
 
