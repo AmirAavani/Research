@@ -23,7 +23,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="WebEngine;libraries/WebEngineUnits;libraries/General-Purpose-Units;libraries/Unicode-Functions;libraries/TemplatesUnit;libraries/Database-Units;DB;libraries/ALogger;DataModule;libraries/DataModule;libraries/Threading;../my-units/General-Purpose-Units;../my-units/ALogger;../my-units/Pipeline;StepHandlers;../my-units/Threading;../my-units/Algortihmic-Unit;../my-units/Unicode-Functions;/usr/local/share/src/fpc-3.3.1/fpc/packages/pthreads/src/;/usr/local/share/src/fpc-3.3.1/fpc/packages/fcl-base/src/;/usr/local/share/src/fpc-3.3.1/fpc/packages/rtl-console/src/unix/;Protos/RawData;../my-units/PB2PAS;../my-units/Hash-Units"/>
+            <OtherUnitFiles Value="WebEngine;libraries/WebEngineUnits;libraries/General-Purpose-Units;libraries/Unicode-Functions;libraries/TemplatesUnit;libraries/Database-Units;DB;libraries/ALogger;DataModule;libraries/DataModule;libraries/Threading;../my-units/General-Purpose-Units;../my-units/ALogger;StepHandlers;../my-units/Threading;../my-units/Algortihmic-Unit;../my-units/Unicode-Functions;/usr/local/share/src/fpc-3.3.1/fpc/packages/pthreads/src/;/usr/local/share/src/fpc-3.3.1/fpc/packages/fcl-base/src/;/usr/local/share/src/fpc-3.3.1/fpc/packages/rtl-console/src/unix/;Protos/RawData;../my-units/PB2PAS;../my-units/Hash-Units;../my-units/Pipeline/Mappers"/>
             <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <Parsing>
@@ -50,7 +50,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="../my-units/General-Purpose-Units;../my-units/ALogger;../my-units/Pipeline;StepHandlers;../my-units/Threading;../my-units/Algortihmic-Unit;../my-units/Unicode-Functions;Protos/RawData;../my-units/PB2PAS;../my-units/Hash-Units"/>
+            <OtherUnitFiles Value="../my-units/General-Purpose-Units;../my-units/ALogger;StepHandlers;../my-units/Threading;../my-units/Algortihmic-Unit;../my-units/Unicode-Functions;Protos/RawData;../my-units/PB2PAS;../my-units/Hash-Units;../my-units/Pipeline/Mappers"/>
             <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -89,14 +89,6 @@
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="../my-units/Pipeline/PipelineUnit.pp"/>
-        <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="StepHandlers/IndexDocumentsUnit.pp"/>
-        <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
         <Filename Value="../my-units/Threading/RunInAThreadUnit.pp"/>
         <IsPartOfProject Value="True"/>
       </Unit>
@@ -110,10 +102,6 @@
       </Unit>
       <Unit>
         <Filename Value="StepHandlers/ExtractParagraphsUnit.pp"/>
-        <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="../my-units/Pipeline/Pipeline.TypesUnit.pp"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
@@ -147,7 +135,27 @@
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="../my-units/Pipeline/Pipeline.IOUnit.pp"/>
+        <Filename Value="StepHandlers/SharedDataUnit.pp"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../my-units/Pipeline/Mappers/BaseMapperUnit.pp"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../my-units/General-Purpose-Units/GenericCollection.UtilsUnit.pp"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../my-units/Pipeline/Mappers/DataLineUnit.pp"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../my-units/Pipeline/Mappers/SourceUnit.pp"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../my-units/Pipeline/Mappers/MapperOptionUnit.pp"/>
         <IsPartOfProject Value="True"/>
       </Unit>
     </Units>
@@ -162,7 +170,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="../my-units/General-Purpose-Units;../my-units/ALogger;../my-units/Pipeline;StepHandlers;../my-units/Threading;../my-units/Algortihmic-Unit;../my-units/Unicode-Functions;Protos/RawData;../my-units/PB2PAS;../my-units/Hash-Units"/>
+      <OtherUnitFiles Value="../my-units/General-Purpose-Units;../my-units/ALogger;StepHandlers;../my-units/Threading;../my-units/Algortihmic-Unit;../my-units/Unicode-Functions;Protos/RawData;../my-units/PB2PAS;../my-units/Hash-Units;../my-units/Pipeline/Mappers"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>

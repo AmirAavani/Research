@@ -1,3 +1,7 @@
 [submodule "my-units"]
 	path = my-units
 	url = https://github.com/AmirAavani/my-units.git
+
+[submodule "HashLib4Pascal"]
+	path = external/HashLib4Pascal
+	url = https://github.com/Xor-el/HashLib4Pascal
