@@ -6,32 +6,25 @@ uses
   {$IFDEF UNIX}
   cthreads,
   {$ENDIF}
-  Classes, sysutils, ParameterManagerUnit, StreamUnit, ALoggerUnit,
-  ProtoHelperUnit, SharedDataUnit,  BaseMapperUnit,
-  DataLineUnit, SourcerUnit, MapperOptionUnit, PairUnit, Mapper.TypesUnit
-  { you can add units after this };
+  Classes, sysutils, ParameterManagerUnit, ALoggerUnit, PipelineUnit,
+  SimpleTypesUnit, BuildLineIndexUnit, StreamUnit, PathHelperUnit,
+  DateTimeUtilUnit;
 
 var
-  Filename, InputDir: AnsiString;
-  dl: TDataLine;
+  Filename, InputDir, OutputDir, TmpDir: AnsiString;
+  Pipeline: TPipeline;
 
 
 begin
   InputDir:= GetRunTimeParameterManager.ValueByName['--InputDir'].AsAnsiString;
-  Filename := ConcatPaths([InputDir, 'wiki.train.tokens']);
-  FMTDebugLn('%d Filename: %s', [ThreadID, Filename]);
+  OutputDir:= GetRunTimeParameterManager.ValueByName['--OutputDir'].AsAnsiString;
+  TmpDir:= GetRunTimeParameterManager.ValueByName['--TmpDir'].AsAnsiString;
 
-  dl := TDataLine.Create(TNewLineReader.Create(Filename, sLineBreak)).
-    Map('TokenizeDoc', TBaseMapper.Create,
-      TMappingOptions.Create.SetNumShards(10)).
-    Map('Count', TBaseMapper.Create, TMappingOptions.Create);
+  Pipeline := TPipeline.Create('NGram');
 
-  FMTDebugLn('Run?: %s', [BoolToStr(dl.Run(False, True), 'True', 'False')]);
+  Pipeline.AddNewStep(@BuildLineIndex, 1);
 
-  dl.Report;
-
-  FMTDebugLn('Wait?: %s', [BoolToStr(dl.Wait, 'True', 'False')]);
-  DebugLn('Done');
-
+  Pipeline.Run(True);
+  Pipeline.Free;
 end.
 
