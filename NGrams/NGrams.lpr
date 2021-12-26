@@ -22,7 +22,7 @@ begin
 
   Pipeline := TPipeline.Create('NGram');
 
-  Pipeline.AddNewStep(@BuildLineIndex, 1);
+  Pipeline.AddNewStep(@EncodeTokenStep, 1);
 
   Pipeline.Run(True);
   Pipeline.Free;
