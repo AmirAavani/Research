@@ -4,6 +4,6 @@
 [submodule "external/hashing/HashLib4Pascal"]
 	path = external/hashing/HashLib4Pascal
 	url = https://github.com/Xor-el/HashLib4Pascal
-[submodule "murrayc-suffix-tree"]
+[submodule "external/murrayc-suffix-tree"]
 	path = external/murrayc-suffix-tree
 	url = https://github.com/murraycu/murrayc-suffix-tree.git
