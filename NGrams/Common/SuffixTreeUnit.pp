@@ -72,8 +72,7 @@ type
     function SplitEdge(Suffix: TSuffix; Doc: TBaseDoc): Integer;
 
     constructor Create;
-    constructor Create(InitFirstcharIndex, InitLastCharIndex, ParentNode: Integer;
-      Doc: TBaseDoc);
+    constructor Create(InitFirstcharIndex, InitLastCharIndex, ParentNode: Integer);
 
     procedure Print(constref Title: AnsiString);
 
@@ -469,7 +468,7 @@ begin
 end;
 
 constructor TEdge.Create(InitFirstcharIndex, InitLastCharIndex,
-  ParentNode: Integer; Doc: TBaseDoc);
+  ParentNode: Integer);
 begin
   FFirstCharIndex := InitFirstcharIndex;
   FLastCharIndex := InitLastCharIndex;
