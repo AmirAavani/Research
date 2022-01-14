@@ -352,7 +352,9 @@ begin
   for i := 0 to AllStr.Count - 1 do
     if AllSuffixes[i] <> AllStr[i] then
     begin
-      WriteLn(i, ' ', AllStr[i], ' ', AllSuffixes[i]);
+      WriteLn(i);
+      WriteLn(AllStr[i]);
+      WriteLn(AllSuffixes[i]);
       Exit(False);
 
     end;
