@@ -27,6 +27,8 @@ type
   end;
 
 
+  TSuffixTree = class;
+
   { TSuffix }
 
   TSuffix = class(TObject)
@@ -43,17 +45,29 @@ type
 
     function IsExplicit: Boolean;
     function IsImplicit: Boolean;
-    procedure Canonize(Doc: TBaseDoc);
+    procedure Canonize(Doc: TBaseDoc; Tree: TSuffixTree);
 
     procedure Print(constref Title: AnsiString);
   end;
 
+
+  { TNode }
+
+  TNode = class(TObject)
+  private
+    FSuffixNodeID: Integer;
+  public
+    property SuffixNodeID: Integer read FSuffixNodeID;
+
+    constructor Create;
+
+  end;
+
+  TNodes = specialize TObjectCollection<TNode>;
+
   { TEdge }
 
   TEdge = class(TObject)
-    class function Find(OriginNode, FirstChar: Integer): TEdge;
-    class function Hash(Node, c: Int64): Int64;
-
   private
     FEndNode: Integer;
     FFirstCharIndex: Integer;
@@ -67,12 +81,9 @@ type
     property StartNode: Integer read FStartNode;
     property EndNode: Integer read FEndNode;
 
-    procedure Insert(Doc: TBaseDoc);
-    procedure Remove(Doc: TBaseDoc);
-    function SplitEdge(Suffix: TSuffix; Doc: TBaseDoc): Integer;
-
     constructor Create;
-    constructor Create(InitFirstcharIndex, InitLastCharIndex, ParentNode: Integer);
+    constructor Create(InitFirstcharIndex, InitLastCharIndex, ParentNode,
+      _EndNode: Integer);
 
     procedure Print(constref Title: AnsiString);
 
@@ -80,20 +91,6 @@ type
 
   TEdges = specialize TMap<Int64, TEdge>;
 
-  { TNode }
-
-  TNode = class(TObject)
-    class function Next: Integer;
-  private
-    FSuffixNodeID: Integer;
-  public
-    property SuffixNodeID: Integer read FSuffixNodeID;
-
-    constructor Create;
-
-  end;
-
-  TNodes = specialize TObjectCollection<TNode>;
   { TStringDoc }
 
   TStringDoc = class(TBaseDoc)
@@ -112,29 +109,31 @@ type
   TSuffixTree = class(TObject)
   private
     FRoot: TNode;
+    Nodes: TNodes;
+    Edges: TEdges;
+    Doc: TBaseDoc;
 
-    procedure AddPrefix(Doc: TBaseDoc; Active: TSuffix; LastCharIndex: Integer);
-    procedure DumpEdges(Doc: TbaseDoc; CurrentN: Integer);
+    procedure AddPrefix(Active: TSuffix; LastCharIndex: Integer);
+    procedure DumpEdges(CurrentN: Integer);
 
+    function GetNextNode: Integer;
+    function FindEdge(OriginNode, FirstChar: Integer): TEdge;
+    procedure RemoveEdge(Edge: TEdge);
+    procedure InsertEdge(Edge: TEdge);
+    function SplitEdge(Edge: TEdge; Suffix: TSuffix): Integer;
   public
     property Root: TNode read FRoot;
 
-    constructor Create;
+    constructor Create(_Doc: TBaseDoc);
     destructor Destroy; override;
 
-    procedure Print(Doc: TBaseDoc);
-    function Validate(Doc: TBaseDoc): Boolean;
-    procedure AddString(Doc: TBaseDoc);
+    procedure Print;
+    function Validate: Boolean;
   end;
 
 implementation
 uses
   sysutils, Classes, CollectionUnit, ALoggerUnit;
-
-{ TNode }
-
-var
-  Nodes: TNodes;
 
 { TStringDoc }
 
@@ -160,8 +159,7 @@ end;
 
 { TSuffixTree }
 
-procedure TSuffixTree.AddPrefix(Doc: TBaseDoc; Active: TSuffix;
-  LastCharIndex: Integer);
+procedure TSuffixTree.AddPrefix(Active: TSuffix; LastCharIndex: Integer);
 var
   ParentNode, LastParentNode: Integer;
   Edge, NewEdge: TEdge;
@@ -180,37 +178,36 @@ begin
 
     if Active.IsExplicit then
     begin
-      Edge := TEdge.Find(Active.OriginNode, Doc.CharAt[LastCharIndex]);
+      Edge := FindEdge(Active.OriginNode, Doc.CharAt[LastCharIndex]);
       if Edge <> nil then
         Break;
 
     end
     else
     begin
-      Edge := Edge.Find(Active.OriginNode, Doc.CharAt[Active.FirstCharIndex]);
+      Edge := FindEdge(Active.OriginNode, Doc.CharAt[Active.FirstCharIndex]);
       Span := Active.LastCharIndex - Active.FirstCharIndex;
       if Doc.CharAt[Edge.FirstCharIndex + Span + 1] = Doc.CharAt[LastCharIndex] then
         Break;
-      ParentNode := Edge.SplitEdge(Active, Doc);
+      ParentNode := SplitEdge(Edge, Active);
 
     end;
 
-    NewEdge := TEdge.Create(LastCharIndex, Doc.Count - 1, ParentNode);
+    NewEdge := TEdge.Create(LastCharIndex, Doc.Count - 1, ParentNode, GetNextNode);
     NewEdge.Print('new_edge');
-    NewEdge.Insert(Doc);
+    Self.InsertEdge(NewEdge);
     if 0 < LastParentNode then
     begin
       Nodes[LastParentNode].FSuffixNodeID := ParentNode;
 
     end;
     LastParentNode := ParentNode;
-//
 
     if Active.OriginNode = 0 then
       Active.FFirstCharIndex += 1
     else
       Active.FOriginNode := Nodes[Active.OriginNode].SuffixNodeID;
-    Active.Canonize(Doc);
+    Active.Canonize(Doc, self);
 
   end;
 
@@ -218,14 +215,11 @@ begin
     Nodes[LastParentNode].FSuffixNodeID := ParentNode;
 
   Active.FLastCharIndex += 1;
-  Active.Canonize(Doc);
+  Active.Canonize(Doc, Self);
 
 end;
 
-var
-  Edges: TEdges;
-
-procedure TSuffixTree.DumpEdges(Doc: TbaseDoc; CurrentN: Integer);
+procedure TSuffixTree.DumpEdges(CurrentN: Integer);
 var
   j, Top, l: Integer;
   it: TEdges.TPairEnumerator;
@@ -257,23 +251,115 @@ begin
 
 end;
 
-constructor TSuffixTree.Create;
+function TSuffixTree.GetNextNode: Integer;
+begin
+  Nodes.Add(TNode.Create);
+
+  Exit(Nodes.Count - 1);
+
+end;
+
+function Hash(Node, c: Int64): Int64;
+begin
+  Result := (Node shl 32 + c); // mod HashTableSize;
+
+end;
+
+function TSuffixTree.FindEdge(OriginNode, FirstChar: Integer): TEdge;
+var
+  Index: Int64;
+
+begin
+  Index := Hash(OriginNode, FirstChar);
+  Result := nil;
+  Edges.TryGetData(Index, Result);
+
+end;
+
+procedure TSuffixTree.RemoveEdge(Edge: TEdge);
+var
+  Index: Int64;
+
+begin
+  Edge.Print('Remove');
+  Index := Hash(Edge.StartNode, Doc.CharAt[Edge.FirstCharIndex]);
+  Edges.Delete(Index, False);
+
+end;
+
+procedure TSuffixTree.InsertEdge(Edge: TEdge);
+var
+  Index: Int64;
+
+begin
+  Edge.Print('Insert');
+  Index := Hash(Edge.FStartNode, Doc.CharAt[Edge.FFirstCharIndex]);
+  if Edges.Find(Index) <> nil then
+    WritelN('Dupes!?');
+  Edges.Add(Index, Edge);
+
+end;
+
+function TSuffixTree.SplitEdge(Edge: TEdge; Suffix: TSuffix): Integer;
+var
+  NewEdge: TEdge;
+
+begin
+  RemoveEdge(Edge);
+  NewEdge := TEdge.Create(
+    Edge.FirstCharIndex,
+    Edge.FirstCharIndex + Suffix.LastCharIndex - Suffix.FirstCharIndex,
+    Suffix.OriginNode,
+    GetNextNode);
+  NewEdge.Print('new_edge');
+
+  InsertEdge(NewEdge);
+  Nodes[NewEdge.EndNode].FSuffixNodeID := Suffix.OriginNode;
+  Edge.FFirstCharIndex += Suffix.LastCharIndex - Suffix.FirstCharIndex + 1;
+  Edge.FStartNode := NewEdge.EndNode;
+  InsertEdge(Edge);
+  Result := NewEdge.EndNode;
+
+end;
+
+constructor TSuffixTree.Create(_Doc: TBaseDoc);
+var
+  Active: TSuffix;
+  i: Integer;
+
 begin
   inherited Create;
+  Doc := _Doc;
+
+  Nodes := TNodes.Create;
+  Nodes.Add(TNode.Create);
+  Edges := TEdges.Create;
+
+  Active := TSuffix.Create(0, 0, -1, Doc);  // The initial active prefix
+  for i := 0 to Doc.Count - 1 do
+  begin
+    AddPrefix(Active, i);
+    //  DumpEdges(i + 1);
+  end;
+  // DumpEdges(FDoc.Count);
 
 end;
 
 destructor TSuffixTree.Destroy;
 begin
+  Nodes.Free;
+  Edges.Free;
+
   inherited Destroy;
 end;
 
-procedure TSuffixTree.Print(Doc: TBaseDoc);
+procedure TSuffixTree.Print;
 begin
-  DumpEdges(Doc, 0);
+  DumpEdges(0);
+
 end;
 
-function TSuffixTree.Validate(Doc: TBaseDoc): Boolean;
+function TSuffixTree.Validate: Boolean;
 var
   AllStr: TStringList;
   AllChars, Degs: TInt64Collection;
@@ -293,7 +379,7 @@ var
     begin
       Tmp := Current;
 
-      Edge := TEdge.Find(StartNode, Ch);
+      Edge := FindEdge(StartNode, Ch);
       if Edge = nil then
         Continue;
       Degs[StartNode] := Degs[StartNode] + 1;
@@ -365,31 +451,6 @@ begin
   Result := True;
 end;
 
-procedure TSuffixTree.AddString(Doc: TBaseDoc);
-var
-  Active: TSuffix;
-  i: Integer;
-
-begin
-  Active := TSuffix.Create(0, 0, -1, Doc);  // The initial active prefix
-  for i := 0 to Doc.Count - 1 do
-  begin
-    AddPrefix(Doc, Active, i);
-  //  DumpEdges(i + 1);
-  end;
-  // DumpEdges(FDoc.Count);
-
-
-end;
-
-class function TNode.Next: Integer;
-begin
-  Nodes.Add(TNode.Create);
-
-  Exit(Nodes.Count - 1);
-
-end;
-
 constructor TNode.Create;
 begin
   inherited Create;
@@ -400,67 +461,6 @@ end;
 
 { TEdge }
 
-class function TEdge.Find(OriginNode, FirstChar: Integer): TEdge;
-var
-  Index: Int64;
-
-begin
-  Index := Hash(OriginNode, FirstChar);
-  Result := nil;
-  Edges.TryGetData(Index, Result);
-
-end;
-
-class function TEdge.Hash(Node, c: Int64): Int64;
-begin
-  Result := (Node shl 32 + c); // mod HashTableSize;
-
-end;
-
-procedure TEdge.Insert(Doc: TBaseDoc);
-var
-  Index: Int64;
-
-begin
-  Self.Print('Insert');
-  Index := Hash(FStartNode, Doc.CharAt[FFirstCharIndex]);
-  if Edges.Find(Index) <> nil then
-    WritelN('Dupes!?');
-  Edges.Add(Index, Self);
-
-end;
-
-procedure TEdge.Remove(Doc: TBaseDoc);
-var
-  Index: Int64;
-
-begin
-  Self.Print('Remove');
-  Index := Hash(FStartNode, Doc.CharAt[FirstCharIndex]);
-  Edges.Delete(Index, True);
-
-end;
-
-function TEdge.SplitEdge(Suffix: TSuffix; Doc: TBaseDoc): Integer;
-var
-  NewEdge: TEdge;
-
-begin
-  Remove(Doc);
-  NewEdge := TEdge.Create(
-    FirstCharIndex,
-    FirstCharIndex + Suffix.LastCharIndex - Suffix.FirstCharIndex,
-    Suffix.OriginNode);
-  NewEdge.Print('new_edge');
-
-  NewEdge.Insert(Doc);
-  Nodes[NewEdge.EndNode].FSuffixNodeID := Suffix.OriginNode;
-  FFirstCharIndex += Suffix.LastCharIndex - Suffix.FirstCharIndex + 1;
-  FStartNode := NewEdge.EndNode;
-  Insert(Doc);
-  Result := NewEdge.EndNode;
-
-end;
 
 constructor TEdge.Create;
 begin
@@ -470,12 +470,12 @@ begin
 end;
 
 constructor TEdge.Create(InitFirstcharIndex, InitLastCharIndex,
-  ParentNode: Integer);
+  ParentNode, _EndNode: Integer);
 begin
   FFirstCharIndex := InitFirstcharIndex;
   FLastCharIndex := InitLastCharIndex;
   FStartNode := ParentNode;
-  FEndNode := TNode.Next;
+  FEndNode := _EndNode;
 
 end;
 
@@ -511,7 +511,7 @@ begin
 
 end;
 
-procedure TSuffix.Canonize(Doc: TBaseDoc);
+procedure TSuffix.Canonize(Doc: TBaseDoc; Tree: TSuffixTree);
 var
   Edge: TEdge;
   EdgeSpan: Integer;
@@ -520,7 +520,7 @@ begin
   if IsExplicit then
       Exit;
 
-  Edge := TEdge.Find(OriginNode, Doc.CharAt[FFirstCharIndex]);
+  Edge := Tree.FindEdge(OriginNode, Doc.CharAt[FFirstCharIndex]);
   EdgeSpan := Edge.LastCharIndex - Edge.FirstCharIndex;
   while EdgeSpan <= LastCharIndex - FirstCharIndex do
   begin
@@ -529,7 +529,7 @@ begin
 
     if FirstCharIndex <= LastCharIndex then
     begin
-      Edge := TEdge.Find(Edge.EndNode, Doc.CharAt[FFirstCharIndex]);
+      Edge := Tree.FindEdge(Edge.EndNode, Doc.CharAt[FFirstCharIndex]);
       EdgeSpan := Edge.LastCharIndex - Edge.FirstCharIndex;
 
     end;
@@ -546,13 +546,8 @@ begin
 end;
 
 initialization
-  Nodes := TNodes.Create;
-  Edges := TEdges.Create;
-  Nodes.Add(TNode.Create);
 
 finalization
-  Nodes.Free;
-  Edges.Free;
 
 end.
 
