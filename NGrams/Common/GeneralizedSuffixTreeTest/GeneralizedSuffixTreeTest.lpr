@@ -16,11 +16,11 @@ begin
   Tree := TGeneralizedSuffixTree.Create;
 
   Tree.AddDoc(TStringDoc.Create('Mississipi'));
-  Tree.AddDoc(TStringDoc.Create('AMiR'));
-  Tree.AddDoc(TStringDoc.Create('R'));
-  Tree.AddDoc(TStringDoc.Create('R'));
+  // Tree.AddDoc(TStringDoc.Create('AMiR'));
+  // Tree.AddDoc(TStringDoc.Create('R'));
+  // Tree.AddDoc(TStringDoc.Create('R'));
 
-  Tree.PrintAllTransitions;
+  // Tree.PrintAllTransitions;
   Tree.PrintAll;
   Tree.Free;
 
