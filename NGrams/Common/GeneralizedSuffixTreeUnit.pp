@@ -155,13 +155,14 @@ type
   TSuffixTreeDoc = class(TBaseDoc)
   private
     Doc: TBaseDoc;
+    DocID: UInt32;
 
   protected
     function GetCount: Integer; override;
     function GetCharAt(Index: Integer): Int16; override;
 
   public
-    constructor Create(_Doc: TBaseDoc);
+    constructor Create(_Doc: TBaseDoc; _DocID: UInt32);
     destructor Destroy; override;
     function SubStr(b, e: Integer): AnsiString; override;
 
@@ -171,7 +172,7 @@ type
 
 function TSuffixTreeDoc.GetCount: Integer;
 begin
-  Result := Doc.Count + 1;
+  Result := Doc.Count + 3;
 
 end;
 
@@ -183,13 +184,21 @@ begin
   if Index = Doc.Count then
     Result := EndToken;
 
+  if Index = Doc.Count + 1 then
+    Result := -(DocID shr 16);
+
+  if Index = Doc.Count + 2 then
+    Result := -(DocID and $FFFF);
+
+
 end;
 
-constructor TSuffixTreeDoc.Create(_Doc: TBaseDoc);
+constructor TSuffixTreeDoc.Create(_Doc: TBaseDoc; _DocID: UInt32);
 begin
   inherited Create;
 
   Doc := _Doc;
+  DocID := _DocID;
 
 end;
 
@@ -202,11 +211,17 @@ end;
 
 function TSuffixTreeDoc.SubStr(b, e: Integer): AnsiString;
 begin
-  if e = Doc.Count then
+  if Doc.Count = e then
   begin
     Exit(Doc.SubStr(b, e - 1) + '(EOF)');
 
+  end
+  else if Doc.Count = e + 1then
+  begin
+    Exit(Doc.SubStr(b, e - 1) + '(EOF)[' + IntToStr(DocID) + ']');
+
   end;
+
   Result := Doc.SubStr(b, e);
 
 end;
@@ -770,7 +785,7 @@ var
   NewDoc: TBaseDoc;
 
 begin
-  NewDoc := TSuffixTreeDoc.Create(Doc);
+  NewDoc := TSuffixTreeDoc.Create(Doc, Haystack.Count + 1);
   Haystack.Add(NewDoc);
   LastIndex:= Haystack.Count - 1;
 
@@ -802,7 +817,7 @@ procedure TGeneralizedSuffixTree.PrintAll;
 
 
   begin
-    WriteLn(Format('id: %d Current: "%s"', [Root.ID, Current]));
+    // WriteLn(Format('id: %d Current: "%s"', [Root.ID, Current]));
     if Root.IsLeaf then
     begin
       StrList.Add(Current + ':' + IntToStr(Root.ID));
