@@ -150,29 +150,40 @@ const
 
 type
 
+  TDocMetaData = record
+    DocID: Integer;
+
+  end;
+
   { TSuffixTreeDoc }
 
   TSuffixTreeDoc = class(TBaseDoc)
   private
     Doc: TBaseDoc;
-    DocID: UInt32;
+    MetaData: TDocMetaData;
 
   protected
     function GetCount: Integer; override;
     function GetCharAt(Index: Integer): Int16; override;
 
   public
-    constructor Create(_Doc: TBaseDoc; _DocID: UInt32);
+    constructor Create(_Doc: TBaseDoc; _Metadata: TDocMetaData);
     destructor Destroy; override;
     function SubStr(b, e: Integer): AnsiString; override;
 
   end;
 
+function CreateMetadata(DocID: Uint32; Doc: TBaseDoc): TDocMetaData;
+begin
+  Result.DocID := DocID;
+
+end;
+
 { TSuffixTreeDoc }
 
 function TSuffixTreeDoc.GetCount: Integer;
 begin
-  Result := Doc.Count + 3;
+  Result := Doc.Count + SizeOf(MetaData);
 
 end;
 
@@ -184,21 +195,16 @@ begin
   if Index = Doc.Count then
     Result := EndToken;
 
-  if Index = Doc.Count + 1 then
-    Result := -(DocID shr 16);
-
-  if Index = Doc.Count + 2 then
-    Result := -(DocID and $FFFF);
-
+  Result := PInt16(PInt16(@MetaData) + Index - Doc.Count - 1)^;
 
 end;
 
-constructor TSuffixTreeDoc.Create(_Doc: TBaseDoc; _DocID: UInt32);
+constructor TSuffixTreeDoc.Create(_Doc: TBaseDoc; _Metadata: TDocMetaData);
 begin
   inherited Create;
 
   Doc := _Doc;
-  DocID := _DocID;
+  MetaData := _Metadata;
 
 end;
 
@@ -216,10 +222,23 @@ begin
     Exit(Doc.SubStr(b, e - 1) + '(EOF)');
 
   end
-  else if Doc.Count = e + 1then
+  else if Doc.Count = e - 1 then
   begin
-    Exit(Doc.SubStr(b, e - 1) + '(EOF)[' + IntToStr(DocID) + ']');
+    if b <= Doc.Count then
+      Exit(Doc.SubStr(b, e - 2) + '(EOF){' + IntToStr(Self.CharAt[e]) + '}');
+    Exit('{' + IntToStr(Self.CharAt[e]) + '}');
 
+  end
+  else if Doc.Count = e - 2 then
+  begin
+    if b <= Doc.Count then
+      Exit(Doc.SubStr(b, e - 3) + '(EOF){' + IntToStr(Self.CharAt[e-1]) + ',' +
+        IntToStr(Self.CharAt[e]) + '}');
+    if b = Doc.Count + 1 then
+      Exit('{' + IntToStr(Self.CharAt[e-1]) + ',' +
+        IntToStr(Self.CharAt[e]) + '}');
+
+    Exit('{' + IntToStr(Self.CharAt[e]) + '}');
   end;
 
   Result := Doc.SubStr(b, e);
@@ -719,7 +738,9 @@ procedure TGeneralizedSuffixTree.PrintAllTransitions;
     it := root.FNeighbors.GetEnumerator;
     while it.MoveNext do
     begin
-      WriteLn(Format('id: (%d -> %d) k: %S l: %d r: %d', [root.FID, it.Current.Value.First.FID, Chr(it.Current.Key), it.Current.Value.Second.Left, it.Current.Value.Second.Right]));
+      WriteLn(Format('id: (%d -> %d) k: %S l: %d r: %d', [root.FID, it.Current.Value.First.FID,
+        specialize ifthen<AnsiString>(it.Current.Key > 0, Chr(it.Current.Key), IntToStr(it.Current.Key)),
+        it.Current.Value.Second.Left, it.Current.Value.Second.Right]));
       DFS(it.Current.Value.First);
 
     end;
@@ -785,7 +806,8 @@ var
   NewDoc: TBaseDoc;
 
 begin
-  NewDoc := TSuffixTreeDoc.Create(Doc, Haystack.Count + 1);
+  NewDoc := TSuffixTreeDoc.Create(Doc,
+    CreateMetadata(Haystack.Count + 1, Doc));
   Haystack.Add(NewDoc);
   LastIndex:= Haystack.Count - 1;
 
@@ -812,12 +834,11 @@ procedure TGeneralizedSuffixTree.PrintAll;
   var
     Tmp: AnsiString;
     it: TTransitionMap.TPairEnumerator;
-    Key: TCharType;
     Transition: TTransition;
 
 
   begin
-    // WriteLn(Format('id: %d Current: "%s"', [Root.ID, Current]));
+    WriteLn(Format('id: %d Current: "%s"', [Root.ID, Current]));
     if Root.IsLeaf then
     begin
       StrList.Add(Current + ':' + IntToStr(Root.ID));
@@ -832,7 +853,6 @@ procedure TGeneralizedSuffixTree.PrintAll;
 
     while it.MoveNext do
     begin
-      Key := it.Current.Key;
       Transition := it.Current.Value;
       Tmp := ToString(Transition.Second);
 
