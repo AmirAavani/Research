@@ -15,10 +15,10 @@ type
   TBaseDoc = class(TObject)
   protected
     function GetCount: Integer; virtual; abstract;
-    function GetCharAt(Index: Integer): Int16; virtual; abstract;
+    function GetCharAt(Index: Integer): UInt16; virtual; abstract;
 
   public
-    property CharAt[Index: Integer]: Int16 read GetCharAt;
+    property CharAt[Index: Integer]: UInt16 read GetCharAt;
     property Count: Integer read GetCount;
     constructor Create;
 
@@ -33,7 +33,7 @@ type
     FStr: AnsiString;
 
     function GetCount: Integer; override;
-    function GetCharAt(Index: Integer): Int16; override;
+    function GetCharAt(Index: Integer): UInt16; override;
 
   public
     constructor Create(constref Str: AnsiString);
@@ -54,7 +54,7 @@ type
     constructor CreateWithExtraToken(RefDoc: TBaseDoc; _SIndex, _FIndex: Integer; EToken: UInt32);
 
     function GetCount: Integer; override;
-    function GetCharAt(Index: Integer): Int16; override;
+    function GetCharAt(Index: Integer): UInt16; override;
     function SubStr(s, e: Integer): AnsiString; override;
   end;
 
@@ -97,7 +97,7 @@ begin
   Result := FIndex - SIndex + 1;
 end;
 
-function TRefDoc.GetCharAt(Index: Integer): Int16;
+function TRefDoc.GetCharAt(Index: Integer): UInt16;
 begin
   if Index = Count - 1 then
     Exit(0);
@@ -164,7 +164,7 @@ begin
 
 end;
 
-function TStringDoc.GetCharAt(Index: Integer): Int16;
+function TStringDoc.GetCharAt(Index: Integer): UInt16;
 begin
   Result := Ord(FStr[Index + 1]);
 

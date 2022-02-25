@@ -144,16 +144,13 @@ type
   end;
 
 implementation
+uses
+  Math, MetadataUnit;
 
 const
   Inf = High(Int64);
 
 type
-
-  TDocMetaData = record
-    DocID: Integer;
-
-  end;
 
   { TSuffixTreeDoc }
 
@@ -161,10 +158,11 @@ type
   private
     Doc: TBaseDoc;
     MetaData: TDocMetaData;
+    MetaDataBs: TBytes;
 
   protected
     function GetCount: Integer; override;
-    function GetCharAt(Index: Integer): Int16; override;
+    function GetCharAt(Index: Integer): UInt16; override;
 
   public
     constructor Create(_Doc: TBaseDoc; _Metadata: TDocMetaData);
@@ -175,6 +173,8 @@ type
 
 function CreateMetadata(DocID: Uint32; Doc: TBaseDoc): TDocMetaData;
 begin
+  Result := TDocMetaData.Create;
+
   Result.DocID := DocID;
 
 end;
@@ -183,65 +183,80 @@ end;
 
 function TSuffixTreeDoc.GetCount: Integer;
 begin
-  Result := Doc.Count + SizeOf(MetaData);
+  Result := Doc.Count + 1 + (Length(MetaDataBs) + 1) div 2;
+
 
 end;
 
-function TSuffixTreeDoc.GetCharAt(Index: Integer): Int16;
+function TSuffixTreeDoc.GetCharAt(Index: Integer): UInt16;
+var
+  i: Integer;
+
 begin
   if Index < Doc.Count then
     Exit(Doc.CharAt[Index]);
 
   if Index = Doc.Count then
-    Result := EndToken;
+    Exit(EndToken);
 
-  Result := PInt16(PInt16(@MetaData) + Index - Doc.Count - 1)^;
+  {
+   C+1, -> M[0], M[1]
+   C+2  -> M[2], M[3]
+   ...
+  }
+  i := Index - Doc.Count - 1;
+  Result := Ord(MetaDataBs[2 * i + 1]) shl 8;
+  if 2 * i + 1 <= Length(MetaDataBs) then
+    Result := Result or UInt16(MetaDataBs[2 * i + 2]);
 
 end;
 
 constructor TSuffixTreeDoc.Create(_Doc: TBaseDoc; _Metadata: TDocMetaData);
+var
+  S: TStream;
+
 begin
   inherited Create;
 
   Doc := _Doc;
   MetaData := _Metadata;
 
+  S := TBytesStream.Create;
+  Metadata.SaveToStream(S);
+  SetLength(MetaDataBs, S.Size);
+  S.Read(MetaDataBs[1], S.Size);
+  S.Free;
+
 end;
 
 destructor TSuffixTreeDoc.Destroy;
 begin
   Doc.Free;
+  MetaData.Free;
+  SetLength(MetaDataBs, 0);
 
   inherited Destroy;
 end;
 
 function TSuffixTreeDoc.SubStr(b, e: Integer): AnsiString;
+var
+  i: Integer;
+
 begin
-  if Doc.Count = e then
-  begin
-    Exit(Doc.SubStr(b, e - 1) + '(EOF)');
+  Result := Doc.SubStr(b, Min(e, Doc.Count - 1));
+  if e < Doc.Count then
+    Exit;
 
-  end
-  else if Doc.Count = e - 1 then
-  begin
-    if b <= Doc.Count then
-      Exit(Doc.SubStr(b, e - 2) + '(EOF){' + IntToStr(Self.CharAt[e]) + '}');
-    Exit('{' + IntToStr(Self.CharAt[e]) + '}');
+  Result += '(EOF)';
+  if e = Doc.Count then
+    Exit;
 
-  end
-  else if Doc.Count = e - 2 then
-  begin
-    if b <= Doc.Count then
-      Exit(Doc.SubStr(b, e - 3) + '(EOF){' + IntToStr(Self.CharAt[e-1]) + ',' +
-        IntToStr(Self.CharAt[e]) + '}');
-    if b = Doc.Count + 1 then
-      Exit('{' + IntToStr(Self.CharAt[e-1]) + ',' +
-        IntToStr(Self.CharAt[e]) + '}');
+  Result += '{';
+  for i := Doc.Count + 1 to e do
+    Result += IntToStr(Self.CharAt[i]) + ',';
+  Delete(Result, Length(Result), 1);
+  Result += '}';
 
-    Exit('{' + IntToStr(Self.CharAt[e]) + '}');
-  end;
-
-  Result := Doc.SubStr(b, e);
 
 end;
 

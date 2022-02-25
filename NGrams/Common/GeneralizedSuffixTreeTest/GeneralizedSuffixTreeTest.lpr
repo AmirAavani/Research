@@ -13,6 +13,7 @@ var
   Tree: TGeneralizedSuffixTree;
 
 begin
+
   Tree := TGeneralizedSuffixTree.Create;
 
   Tree.AddDoc(TStringDoc.Create('Mississipi'));
