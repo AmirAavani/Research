@@ -7,8 +7,8 @@ uses
   cthreads,
   {$ENDIF}
   Classes, sysutils, ParameterManagerUnit, ALoggerUnit, PipelineUnit,
-  SimpleTypesUnit, BuildLineIndexUnit, StreamUnit, PathHelperUnit,
-  DateTimeUtilUnit;
+  SimpleTypesUnit, StreamUnit, PathHelperUnit,
+  DateTimeUtilUnit, HeapUnit;
 
 var
   Filename, InputDir, OutputDir, TmpDir: AnsiString;
@@ -20,7 +20,7 @@ begin
   OutputDir:= GetRunTimeParameterManager.ValueByName['--OutputDir'].AsAnsiString;
   TmpDir:= GetRunTimeParameterManager.ValueByName['--TmpDir'].AsAnsiString;
 
-  Pipeline := TPipeline.Create('NGram');
+  Pipeline := TPipeline.Create('NGram', TPipelineConfig.DefaultConfig);
 
   Pipeline.AddNewStep(@EncodeTokenStep, 1);
 

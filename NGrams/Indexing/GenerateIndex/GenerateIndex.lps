@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <Version Value="12"/>
+    <BuildModes Active="Default"/>
+    <Units>
+      <Unit>
+        <Filename Value="GenerateIndex.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <CursorPos X="32" Y="7"/>
+        <UsageCount Value="44"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../my-units/Pipeline/PipelineUnit.pp"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="199"/>
+        <CursorPos X="18" Y="218"/>
+        <UsageCount Value="44"/>
+        <Bookmarks Count="1">
+          <Item0 X="35" Y="286" ID="1"/>
+        </Bookmarks>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../my-units/General-Purpose-Units/GenericCollectionUnit.pp"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="8"/>
+        <CursorPos X="11" Y="14"/>
+        <UsageCount Value="44"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../my-units/Unicode-Functions/WideStringUnit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="44"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../my-units/ALogger/ALoggerUnit.pp"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="39"/>
+        <CursorPos X="44" Y="45"/>
+        <UsageCount Value="44"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../my-units/Threading/SyncUnit.pp"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="44"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../my-units/PB2PAS/ProtoHelperUnit.pp"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="44"/>
+      </Unit>
+      <Unit>
+        <Filename Value="StepHandlers/ExtractUniqueTokensStepUnit.pp"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="1"/>
+        <CursorPos X="3" Y="25"/>
+        <UsageCount Value="44"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../my-units/Algorithmic-Units/HeapUnit.pp"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="66" Y="4"/>
+        <UsageCount Value="44"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../my-units/General-Purpose-Units/StreamUnit.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="111"/>
+        <CursorPos X="31" Y="130"/>
+        <UsageCount Value="8"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../my-units/Pipeline/Pipeline.TypesUnit.pp"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="34" Y="8"/>
+        <UsageCount Value="8"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../my-units/General-Purpose-Units/QueueUnit.pp"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="39"/>
+        <CursorPos X="15" Y="58"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../my-units/Algortihmic-Unit/HeapUnit.pp"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="18"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/share/src/fpc-3.3.1/fpc/packages/rtl-generics/src/generics.collections.pas"/>
+        <UnitName Value="Generics.Collections"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1419"/>
+        <CursorPos Y="1440"/>
+        <UsageCount Value="8"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../my-units/Threading/RunInAThreadUnit.pp"/>
+        <EditorIndex Value="10"/>
+        <CursorPos Y="16"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../my-units/General-Purpose-Units/ParameterManagerUnit.pp"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="67"/>
+        <CursorPos X="3" Y="69"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../my-units/Pipeline/Pipeline.Utils.pp"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="118"/>
+        <CursorPos X="76" Y="119"/>
+        <UsageCount Value="8"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../my-units/Threading/ThreadPoolUnit.pp"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="17"/>
+        <CursorPos X="27" Y="28"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../my-units/Threading/ThreadSafeQueueUnit.pp"/>
+        <EditorIndex Value="9"/>
+        <TopLine Value="176"/>
+        <CursorPos X="3" Y="200"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../my-units/General-Purpose-Units/ThreadPoolUnit.pp"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="91" Y="15"/>
+        <UsageCount Value="8"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../my-units/General-Purpose-Units/PairUnit.pp"/>
+        <EditorIndex Value="7"/>
+        <CursorPos Y="14"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+      </Unit>
+    </Units>
+    <JumpHistory HistoryIndex="29">
+      <Position>
+        <Filename Value="../../../my-units/Threading/ThreadPoolUnit.pp"/>
+        <Caret Line="86" TopLine="55"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../my-units/Threading/ThreadPoolUnit.pp"/>
+        <Caret Line="90" Column="3" TopLine="55"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../my-units/Pipeline/PipelineUnit.pp"/>
+        <Caret Line="246" Column="59" TopLine="227"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../my-units/Threading/ThreadPoolUnit.pp"/>
+        <Caret Line="79" Column="3" TopLine="55"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../my-units/Threading/ThreadPoolUnit.pp"/>
+        <Caret Line="23" TopLine="9"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../my-units/Threading/ThreadPoolUnit.pp"/>
+        <Caret Line="15" Column="3"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../my-units/Threading/ThreadPoolUnit.pp"/>
+        <Caret Line="68" Column="52" TopLine="49"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../my-units/Pipeline/PipelineUnit.pp"/>
+        <Caret Line="247" Column="58" TopLine="227"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../my-units/Pipeline/PipelineUnit.pp"/>
+        <Caret Line="282" Column="5" TopLine="254"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../my-units/Pipeline/PipelineUnit.pp"/>
+        <Caret Line="62" Column="14" TopLine="46"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../my-units/Threading/ThreadPoolUnit.pp"/>
+        <Caret Line="76" Column="3" TopLine="56"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../my-units/Pipeline/PipelineUnit.pp"/>
+        <Caret Line="218" Column="16" TopLine="185"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../my-units/ALogger/ALoggerUnit.pp"/>
+        <Caret Line="45" Column="44" TopLine="39"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../my-units/Threading/ThreadPoolUnit.pp"/>
+        <Caret Line="33" Column="3" TopLine="13"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../my-units/Threading/ThreadPoolUnit.pp"/>
+        <Caret Line="98" Column="32" TopLine="64"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../my-units/Threading/ThreadPoolUnit.pp"/>
+        <Caret Line="99" Column="14" TopLine="64"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../my-units/Threading/ThreadPoolUnit.pp"/>
+        <Caret Line="98" Column="3" TopLine="66"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../my-units/Threading/ThreadPoolUnit.pp"/>
+        <Caret Line="99" Column="10" TopLine="70"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../my-units/Threading/ThreadPoolUnit.pp"/>
+        <Caret Line="24" Column="5" TopLine="5"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../my-units/Threading/ThreadPoolUnit.pp"/>
+        <Caret Line="100" Column="28" TopLine="67"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../my-units/Threading/ThreadPoolUnit.pp"/>
+        <Caret Line="84" Column="25" TopLine="67"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../my-units/General-Purpose-Units/QueueUnit.pp"/>
+        <Caret Line="58" Column="15" TopLine="39"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../my-units/Threading/ThreadPoolUnit.pp"/>
+        <Caret Line="81" Column="94" TopLine="67"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../my-units/Threading/ThreadPoolUnit.pp"/>
+        <Caret Line="20" Column="62" TopLine="5"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../my-units/Threading/ThreadPoolUnit.pp"/>
+        <Caret Line="32" Column="61" TopLine="5"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../my-units/Threading/ThreadPoolUnit.pp"/>
+        <Caret Line="101" Column="3" TopLine="66"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../my-units/Threading/ThreadPoolUnit.pp"/>
+        <Caret Line="97" Column="3" TopLine="66"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../my-units/Threading/ThreadPoolUnit.pp"/>
+        <Caret Line="25" Column="71"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../my-units/Threading/ThreadPoolUnit.pp"/>
+        <Caret Line="107" Column="31" TopLine="73"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../my-units/Pipeline/PipelineUnit.pp"/>
+        <Caret Line="218" Column="18" TopLine="199"/>
+      </Position>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes ActiveMode=""/>
+    </RunParams>
+  </ProjectSession>
+  <Debugging>
+    <BreakPoints>
+      <Item>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="../../../my-units/Threading/RunInAThreadUnit.pp"/>
+        <Line Value="70"/>
+      </Item>
+    </BreakPoints>
+  </Debugging>
+</CONFIG>

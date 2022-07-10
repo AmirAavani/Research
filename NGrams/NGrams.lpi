@@ -23,7 +23,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="WebEngine;libraries/WebEngineUnits;libraries/General-Purpose-Units;libraries/Unicode-Functions;libraries/TemplatesUnit;libraries/Database-Units;DB;libraries/ALogger;DataModule;libraries/DataModule;libraries/Threading;../my-units/General-Purpose-Units;../my-units/ALogger;StepHandlers;../my-units/Threading;../my-units/Algortihmic-Unit;../my-units/Unicode-Functions;/usr/local/share/src/fpc-3.3.1/fpc/packages/pthreads/src/;/usr/local/share/src/fpc-3.3.1/fpc/packages/fcl-base/src/;/usr/local/share/src/fpc-3.3.1/fpc/packages/rtl-console/src/unix/;Protos/RawData;../my-units/PB2PAS;../my-units/Hash-Units;../my-units/Pipeline/Mappers;../external/hashing/HashLib4Pascal/HashLib/src/Base;../external/hashing/HashLib4Pascal/HashLib/src/Interfaces;../external/hashing/HashLib4Pascal/HashLib/src/Utils;../external/hashing/HashLib4Pascal/HashLib/src/KDF;../external/hashing/HashLib4Pascal/HashLib/src/Nullable;../external/hashing/HashLib4Pascal/HashLib/src/NullDigest;../external/hashing/HashLib4Pascal/HashLib/src/Checksum;../external/hashing/HashLib4Pascal/HashLib/src/Hash32;../external/hashing/HashLib4Pascal/HashLib/src/Hash64;../external/hashing/HashLib4Pascal/HashLib/src/Hash128;../external/hashing/HashLib4Pascal/HashLib/src/Crypto;../external/hashing/HashLib4Pascal/HashLib/src/Crypto/Blake2BParams;../external/hashing/HashLib4Pascal/HashLib/src/Crypto/Blake2SParams;../external/hashing/HashLib4Pascal/HashLib/src/Interfaces/IBlake2BParams;../external/hashing/HashLib4Pascal/HashLib/src/Interfaces/IBlake2SParams;../my-units/Pipeline;../my-units/Pipeline/Protos"/>
+            <OtherUnitFiles Value="WebEngine;libraries/WebEngineUnits;libraries/General-Purpose-Units;libraries/Unicode-Functions;libraries/TemplatesUnit;libraries/Database-Units;DB;libraries/ALogger;DataModule;libraries/DataModule;libraries/Threading;../my-units/General-Purpose-Units;../my-units/ALogger;StepHandlers;../my-units/Threading;../my-units/Unicode-Functions;/usr/local/share/src/fpc-3.3.1/fpc/packages/pthreads/src/;/usr/local/share/src/fpc-3.3.1/fpc/packages/fcl-base/src/;/usr/local/share/src/fpc-3.3.1/fpc/packages/rtl-console/src/unix/;Protos/RawData;../my-units/PB2PAS;../my-units/Hash-Units;../my-units/Pipeline/Mappers;../external/hashing/HashLib4Pascal/HashLib/src/Base;../external/hashing/HashLib4Pascal/HashLib/src/Interfaces;../external/hashing/HashLib4Pascal/HashLib/src/Utils;../external/hashing/HashLib4Pascal/HashLib/src/KDF;../external/hashing/HashLib4Pascal/HashLib/src/Nullable;../external/hashing/HashLib4Pascal/HashLib/src/NullDigest;../external/hashing/HashLib4Pascal/HashLib/src/Checksum;../external/hashing/HashLib4Pascal/HashLib/src/Hash32;../external/hashing/HashLib4Pascal/HashLib/src/Hash64;../external/hashing/HashLib4Pascal/HashLib/src/Hash128;../external/hashing/HashLib4Pascal/HashLib/src/Crypto;../external/hashing/HashLib4Pascal/HashLib/src/Crypto/Blake2BParams;../external/hashing/HashLib4Pascal/HashLib/src/Crypto/Blake2SParams;../external/hashing/HashLib4Pascal/HashLib/src/Interfaces/IBlake2BParams;../external/hashing/HashLib4Pascal/HashLib/src/Interfaces/IBlake2SParams;../my-units/Pipeline;../my-units/Pipeline/Protos;../my-units/Algorithmic-Units"/>
             <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <Parsing>
@@ -50,7 +50,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="../my-units/General-Purpose-Units;../my-units/ALogger;StepHandlers;../my-units/Threading;../my-units/Algortihmic-Unit;../my-units/Unicode-Functions;Protos/RawData;../my-units/PB2PAS;../my-units/Hash-Units;../my-units/Pipeline/Mappers;../external/hashing/HashLib4Pascal/HashLib/src/Base;../external/hashing/HashLib4Pascal/HashLib/src/Interfaces;../external/hashing/HashLib4Pascal/HashLib/src/Utils;../external/hashing/HashLib4Pascal/HashLib/src/KDF;../external/hashing/HashLib4Pascal/HashLib/src/Nullable;../external/hashing/HashLib4Pascal/HashLib/src/NullDigest;../external/hashing/HashLib4Pascal/HashLib/src/Checksum;../external/hashing/HashLib4Pascal/HashLib/src/Hash32;../external/hashing/HashLib4Pascal/HashLib/src/Hash64;../external/hashing/HashLib4Pascal/HashLib/src/Hash128;../external/hashing/HashLib4Pascal/HashLib/src/Crypto;../external/hashing/HashLib4Pascal/HashLib/src/Crypto/Blake2BParams;../external/hashing/HashLib4Pascal/HashLib/src/Crypto/Blake2SParams;../external/hashing/HashLib4Pascal/HashLib/src/Interfaces/IBlake2BParams;../external/hashing/HashLib4Pascal/HashLib/src/Interfaces/IBlake2SParams;../my-units/Pipeline;../my-units/Pipeline/Protos"/>
+            <OtherUnitFiles Value="../my-units/General-Purpose-Units;../my-units/ALogger;StepHandlers;../my-units/Threading;../my-units/Unicode-Functions;Protos/RawData;../my-units/PB2PAS;../my-units/Hash-Units;../my-units/Pipeline/Mappers;../external/hashing/HashLib4Pascal/HashLib/src/Base;../external/hashing/HashLib4Pascal/HashLib/src/Interfaces;../external/hashing/HashLib4Pascal/HashLib/src/Utils;../external/hashing/HashLib4Pascal/HashLib/src/KDF;../external/hashing/HashLib4Pascal/HashLib/src/Nullable;../external/hashing/HashLib4Pascal/HashLib/src/NullDigest;../external/hashing/HashLib4Pascal/HashLib/src/Checksum;../external/hashing/HashLib4Pascal/HashLib/src/Hash32;../external/hashing/HashLib4Pascal/HashLib/src/Hash64;../external/hashing/HashLib4Pascal/HashLib/src/Hash128;../external/hashing/HashLib4Pascal/HashLib/src/Crypto;../external/hashing/HashLib4Pascal/HashLib/src/Crypto/Blake2BParams;../external/hashing/HashLib4Pascal/HashLib/src/Crypto/Blake2SParams;../external/hashing/HashLib4Pascal/HashLib/src/Interfaces/IBlake2BParams;../external/hashing/HashLib4Pascal/HashLib/src/Interfaces/IBlake2SParams;../my-units/Pipeline;../my-units/Pipeline/Protos;../my-units/Algorithmic-Units"/>
             <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -93,15 +93,7 @@
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="../my-units/Algortihmic-Unit/HeapUnit.pp"/>
-        <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
         <Filename Value="../my-units/Unicode-Functions/WideStringUnit.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="StepHandlers/BuildLineIndexUnit.pp"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
@@ -234,10 +226,11 @@
         <Filename Value="../my-units/Pipeline/Protos/SimpleTypesUnit.pp"/>
         <IsPartOfProject Value="True"/>
       </Unit>
+      <Unit>
+        <Filename Value="../my-units/Algorithmic-Units/HeapUnit.pp"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
     </Units>
-    <Debugger>
-      <Backend Value="{DC737B59-B3EC-47E8-BBFA-8F8BE33D2F0D}"/>
-    </Debugger>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="11"/>
@@ -246,7 +239,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="../my-units/General-Purpose-Units;../my-units/ALogger;StepHandlers;../my-units/Threading;../my-units/Algortihmic-Unit;../my-units/Unicode-Functions;Protos/RawData;../my-units/PB2PAS;../my-units/Hash-Units;../my-units/Pipeline/Mappers;../external/hashing/HashLib4Pascal/HashLib/src/Base;../external/hashing/HashLib4Pascal/HashLib/src/Interfaces;../external/hashing/HashLib4Pascal/HashLib/src/Utils;../external/hashing/HashLib4Pascal/HashLib/src/KDF;../external/hashing/HashLib4Pascal/HashLib/src/Nullable;../external/hashing/HashLib4Pascal/HashLib/src/NullDigest;../external/hashing/HashLib4Pascal/HashLib/src/Checksum;../external/hashing/HashLib4Pascal/HashLib/src/Hash32;../external/hashing/HashLib4Pascal/HashLib/src/Hash64;../external/hashing/HashLib4Pascal/HashLib/src/Hash128;../external/hashing/HashLib4Pascal/HashLib/src/Crypto;../external/hashing/HashLib4Pascal/HashLib/src/Crypto/Blake2BParams;../external/hashing/HashLib4Pascal/HashLib/src/Crypto/Blake2SParams;../external/hashing/HashLib4Pascal/HashLib/src/Interfaces/IBlake2BParams;../external/hashing/HashLib4Pascal/HashLib/src/Interfaces/IBlake2SParams;../my-units/Pipeline;../my-units/Pipeline/Protos"/>
+      <OtherUnitFiles Value="../my-units/General-Purpose-Units;../my-units/ALogger;StepHandlers;../my-units/Threading;../my-units/Unicode-Functions;Protos/RawData;../my-units/PB2PAS;../my-units/Hash-Units;../my-units/Pipeline/Mappers;../external/hashing/HashLib4Pascal/HashLib/src/Base;../external/hashing/HashLib4Pascal/HashLib/src/Interfaces;../external/hashing/HashLib4Pascal/HashLib/src/Utils;../external/hashing/HashLib4Pascal/HashLib/src/KDF;../external/hashing/HashLib4Pascal/HashLib/src/Nullable;../external/hashing/HashLib4Pascal/HashLib/src/NullDigest;../external/hashing/HashLib4Pascal/HashLib/src/Checksum;../external/hashing/HashLib4Pascal/HashLib/src/Hash32;../external/hashing/HashLib4Pascal/HashLib/src/Hash64;../external/hashing/HashLib4Pascal/HashLib/src/Hash128;../external/hashing/HashLib4Pascal/HashLib/src/Crypto;../external/hashing/HashLib4Pascal/HashLib/src/Crypto/Blake2BParams;../external/hashing/HashLib4Pascal/HashLib/src/Crypto/Blake2SParams;../external/hashing/HashLib4Pascal/HashLib/src/Interfaces/IBlake2BParams;../external/hashing/HashLib4Pascal/HashLib/src/Interfaces/IBlake2SParams;../my-units/Pipeline;../my-units/Pipeline/Protos;../my-units/Algorithmic-Units"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>

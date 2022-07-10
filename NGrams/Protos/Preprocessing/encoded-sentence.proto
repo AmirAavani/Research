@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+message EncodedSentence {
+  repreated uint64 token_ids = 1;
+}
+
+message TokenID {
+  string token = 1;
+  uint64 ID = 2;
+}
+
+message InputReaderRequest {
+  string filename = 1;
+}

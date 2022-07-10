@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package indexing.requests;
+
+
+message ReadFileRequest {
+  string filename = 1;
+}
+
+message ProcessSentenceRequest {
+  string Sentence = 1;
+}

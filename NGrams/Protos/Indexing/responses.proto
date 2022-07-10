@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package indexing.responses;
+
+
+message ReadFileResponse {
+  string filename = 1;
+}
+
+message ProcessSentenceResponse {
+  repeated uint64 tokenIDs = 1;
+}
