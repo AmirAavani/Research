@@ -1,9 +1,6 @@
 [submodule "my-units"]
 	path = my-units
 	url = https://github.com/AmirAavani/my-units.git
-[submodule "ParamManager"]
-	path = Modules/ParamManager 
-	url = https://github.com/AmirAavani/ParamManager
 [submodule "external/hashing/HashLib4Pascal"]
 	path = external/hashing/HashLib4Pascal
 	url = https://github.com/Xor-el/HashLib4Pascal
