@@ -7,3 +7,6 @@
 [submodule "modules/ParamManager"]
 	path = modules/ParamManager
 	url = https://github.com/AmirAavani/ParamManager
+[submodule "modules/my-units"]
+	path = modules/my-units
+	url = https://github.com/AmirAavani/my-units
