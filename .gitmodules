@@ -1,9 +1,9 @@
-[submodule "my-units"]
-	path = my-units
-	url = https://github.com/AmirAavani/my-units.git
 [submodule "external/hashing/HashLib4Pascal"]
 	path = external/hashing/HashLib4Pascal
 	url = https://github.com/Xor-el/HashLib4Pascal
 [submodule "external/murrayc-suffix-tree"]
 	path = external/murrayc-suffix-tree
 	url = https://github.com/murraycu/murrayc-suffix-tree
+[submodule "modules/ParamManager"]
+	path = modules/ParamManager
+	url = https://github.com/AmirAavani/ParamManager
