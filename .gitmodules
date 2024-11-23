@@ -7,6 +7,3 @@
 [submodule "external/murrayc-suffix-tree"]
 	path = external/murrayc-suffix-tree
 	url = https://github.com/murraycu/murrayc-suffix-tree
-[submodule "Modules/ParamManager"]
-	path = Modules/ParamManager
-	url = https://github.com/AmirAavani/ParamManager
