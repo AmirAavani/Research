@@ -1,2 +1,3 @@
-sudo umount ./1BWLM/
-sudo mount /dev/sdb1 ./1BWLM/
+mkdir -p ./1BWLM
+sudo umount -f ./1BWLM/
+sudo mount $1 ./1BWLM/
