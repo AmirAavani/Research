@@ -1,0 +1,25 @@
+  Language modeling, a fundamental task in natural language processing, involves predicting the next token in a sequence given a current context. For a long time, N-Gram models, enhanced by Kneser-Ney smoothing, were the dominant approach. Recent advancements in deep learning have led to the emergence of models, such as LSTM, GRU, and attention-based architectures. Today, Transformer-based models, such as those powering ChatGPT and Google Gemini, have become state-of-the-art.
+ 
+  In the literature, NGram models are criticized for having limited and fixed context size. Also, it has been claimed that increasing the context, above 4-Gram models, is not practical, because we need to a memory size of $|Vocab|^n$. In recent years, there have been few approaches that addressed this issue, using better data structure to store and look-up the n-grams \citep{pauls2011faster}, using Suffix Array Data structure \citep{manber1993suffix}. In \citep{liu2024infini}, the authors claim that the $\infty$-gram LM has fairly high accuracy for next-token prediction (47\%). 
+
+  The other shortcoming of the NGram models is their inability to understand and propagate the term-level synonyms. For example, the NGram model most likely predicts very different tokens as the next token for each of the following sequences: “the yellow flower”, “the red flower” and “the light colored flower”.
+
+  Another issue with the NGram model is how the next token is being selected. The most straightforward approach, selecting the token with the highest count, is not working because there could be many sequences that do not exist in the training data. One can think of both Katz back-off\citep{katz1987estimation} and Kneser-Ney smoothing\citep{kneser1995improved} approaches as linear models that are trying to estimate the number/probability of the next tokens. These approaches are not expected to work well when the context size is big.
+
+In this paper, we propose an approach for Language Modeling that could be seen as an extension of N-Grams LM and address the above mentioned shortcomings. In Section~\ref{ExperimentSection}, we will present the results of our proposed method on One Billion Word Benchment \citep{chelba2013one}. TODO: WHATDOES THE RESULT say?
+
+ 
+%  In the preprocessing phase, we:
+%\begin{enumerate}
+%\item Convert $T$ to a set of documents ${d_1, \dots, d_N}$ \ref{DocCreation};
+%\item (Optional step) Enrich each $d_i$ \ref{DocEnrichment}
+%\item Create a text-based Search Engine Index\cite{} from the documents 
+%\item Train the next token predictor \ref{NextTokenPredictor}
+%\end{enumerate}
+%
+%  In the serving phase, given the current context, we:
+%1- Create a query from the context \ref{CreateQuery}
+%2- Retrieve documents matching the query\ref{RetrieveDoc}
+%3- Rank the next token by providing the retrieved documents to our Next Token Predictor\ref{RankTokens}
+%
+

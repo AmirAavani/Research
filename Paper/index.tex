@@ -1,0 +1,25 @@
+We create two sets of indices: a Retrieval Index and a Forward Index. The retrieval index is an extension of the inverted index \cite{InvertedIndex} used in document retrieval systems. The Forward Index, which is a map from document ID to a structure containing all the necessary information for estimating the probabilities of the next token. 
+
+  \subsubsection{Retrieval Index}
+  In the context of language modeling, the traditional approach to building a retrieval index involves creating a map from all possible n-grams to their frequencies. While Suffix Arrays (\cite{stehouwer2010using}, \cite{kennington2012suffix}) offer a space-efficient solution to this problem, they may not be optimal for handling the term level synonyms.
+
+  This paper proposes an alternative approach that addresses the memory limitations of traditional n-gram models. As we will demonstrate in Subsections \ref{SynonymsInDocument} and \ref{SynonymsInQuery}, our approach allows for the expansion of both queries and documents with term-level as well as phrase-level synonyms, an aspect that is computationally challenging for Suffix Array-based methods.
+
+  A key principle underlying our index construction is the retrieval of a superset of matching n-grams rather than the exact set. This approach, while potentially requiring the filtering out of irrelevant documents during the serving phase, significantly reduces memory requirements. As we will demonstrate in this section, the proportion of irrelevant documents within the retrieved set is typically minimal. The process of filtering these irrelevant documents will be described in Section~\ref{Serving}.
+
+  We represent each document as a Weighted Directed Acyclic Graph (WDAG), where nodes represent tokens and edges represent the sequential relationship between tokens. Each edge is associated with a weight, a real value within the range (0, 1]. A source node is added to connect to the node corresponding to the first token of each document, and a sink node is added to connect to the node corresponding to the last token of each document.
+
+  Our retrieval index is effectively a map from pairs of (dist, token), where $dist$ is a non-negative integer and $token \in Vocab$, to Document IDs. To create our retrieval index, we process each node in the DAG for a given document. For each node:
+\begin{enumerate}
+  \item Determine the set of all possible distances (Dist) to the sink node within the DAG.
+  \item Retrieve the corresponding token (t) for the node.
+  \item For each distance $d \in Dist$:
+    \begin{itemize}
+      \item Add the document's ID as a value for the key (d, t) in the retrieval index.
+    \end{itemize}
+\end{enumerate}
+
+As we will demonstrate in Section~\ref{DocumentSynonyms}, this approach to constructing the retrieval index enables the incorporation of Term/Phrase-level enrichment into the documents. Furthermore, it is important to note that our retrieval index will have $O(N * |vocab|)$ keys.
+Figure \ref{DocumentSimplePreProcessingFig} visualizes how we create a retrieval index from the input documents.
+
+

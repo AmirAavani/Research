@@ -1,0 +1,98 @@
+\documentclass[
+%% Submit the paper with the following option enabled. Remove it only
+%% after the review phase:
+anonymous,
+%% Activate the following option if traditional TeX notation for dashes
+%% (--) and double quotes (`` '') is required:
+% TeXligs,
+]{jlm}
+%\usepackage{amsmath,amsthm,amssymb,latexsym,amsfonts}
+\usepackage{amsthm}
+\usepackage{algorithm2e}
+\newtheorem{Proposition}{Proposition}
+\newtheorem{Example}{Example}
+% AUTHOR-PROVIDED LaTeX COMMANDS %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Please place your own definitions and macros below.  Do not put
+% any macro-definitions within the text body.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+% The title of your work:
+\title{Language Modeling By Search}
+
+% If the title is too long for the running head, please provide a
+% shorter version here:
+% (Otherwise leave this command commented out.)
+%\titlerunning{}
+
+% The version of title which will be used in the back matter. This
+% command can only be used to alter line breaks compared to the main
+% title: 
+
+% If all authors have the same affiliation do not use the \inst
+% command: 
+\author{Amir Aavani\inst{1}
+}
+
+% If there are more than two authors, please abbreviate author list
+% for running heads.  Otherwise, comment out the following command:
+\authorrunning{Amir Aavani}
+
+% Short affiliations to be placed on the first page
+% Please give the name of your institution e.g. a university or an
+% institute (if not part of a university).
+\affiliation{%
+}
+
+% Detailed affiliations are shown at the end of the paper
+% Here you can include the name of your faculty or other subdivision.
+% A postal address is also welcome.
+% ORCID is considered obligatory for all authors.
+% An email is optional (please take into the account that the PDF will
+% be available on public Internet).
+\detailedaffiliation{
+  Amir Aavani
+  \email{Amir@Aavani.net}
+}
+
+%% Add the following command after your paper is accepted. The
+%% argument is the numeric ID for your paper as assigned by the OJS
+%% system (displayed at the top of the page for your paper and also as
+%% the last part of the URL).
+% \paperid{0}
+
+\keywords{Language Modelling, Search, Document Retrieval}
+
+
+\maketitle              % typesets the title
+
+\begin{abstract}
+\input{abstract}
+\end{abstract}
+
+\section{Introduction}
+\input{introduction}
+
+\section{Proposed Method}
+\input{proposed}
+
+\bibliographystyle{jlm}
+\bibliography{nlp}
+
+
+\end{document}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% TeX-engine: xetex
+%%% TeX-PDF-mode: t
+%%% coding: utf-8
+%%% ispell-local-dictionary: "british"
+%%% End:

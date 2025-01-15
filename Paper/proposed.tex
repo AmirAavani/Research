@@ -1,0 +1,28 @@
+   In this section, we provide a high-level overview of our proposed approach without delving into the specifics of each component. A more detailed description of each component will be provided in subsequent subsections.
+
+  As it is common in language modeling context, we assume having access to a  large set of text documents. We first append unique separator tokens to mark the beginning and end of each document and then join the resulting documents to create a huge blob of text, $T$. Our approach has two stages, preprocessing/training and serving/testing. The sooner is an offline and computation heavy process while latter is an online and realtime one.
+ 
+    The language model, described here, is designed to predict and return the single most probable token, given the current context. In Section \ref{FurtherDiscussion}, we will explain how to extend this model to output a probability distribution over the entire vocabulary.
+
+  Let's fix $n$ to be the number of tokens in our context. We are given training data T, a large text corpus obtained by concatenating a large set of text documents with unique document boundary markers.
+  Our offline stage involves:
+\begin{itemize}
+\item Constructing a document set $D$, where each document consists of an n-gram followed by its subsequent token in the text corpus $T$.
+\item Creating a retrieval index from the documents in $D$.
+\item Training a Scoring Model $M$ that takes as input information about the retrieved documents ending with a specific token $t$ and outputs a score, an unbounded real number, representing the likelihood of t being the next token.
+\end{itemize}
+
+\noindent Our online stage, given a context $C$ (an $n$-gram), involves:
+\begin{enumerate}
+\item Constructing a \textit{query} $q$ from $C$.
+\item Retrieving a set of documents $R$ from $D$ that match the query $q$ using our retrieval index.
+\item For any token $t$ that appeared as the last token for a document in $R$, computing a score $s_t$ by passing the set of documents in $R$ that end with token $t$ to our Scoring Model $M$.
+\item Selecting the token with the highest score as the predicted next token.
+\end{enumerate}
+
+\subsection{Document Representation}
+\input{docrep}
+
+\subsection{Index Creation}
+  \input{index}
+  

@@ -1,0 +1,50 @@
+  In our approach, both queries and documents (i.e., n-grams) are represented using weighted Directed Acyclic Graphs (DAGs).
+
+Let us assume we are given an $n$-gram $T=\langle t_1​,...,t_n\rangle$. We also have a set of triples, $M$, where each triple consists of: (i) a source token sequence $A=\langle a_1,\cdots,a_i$, (ii) a target token sequence $B=\langle b_1,\cdots,b_j\rangle$, and (iii) a real-valued confidence score $f$ between 0 and 1. An entry $\langle A, B, f\rangle$ in $M$ indicates that the token sequence $A$ is considered a synonym of the token sequence $B$ with a confidence score of $f$. It is important to note that these synonyms are not context-aware.
+ 
+ \begin{Example} The following is an example of a synonym triples:
+\begin{itemize}
+  \item $\langle (\text{New}, \text{York}), (\text{NY}), 1.0\rangle$
+  \item $\langle (\text{SF}), (\text{San}, \text{Francisco}), 1.0\rangle$
+  \item $\langle (\text{Our}, \text{Family}), (\text{we}), 0.4\rangle$
+  \item $\langle (\text{Travelled}), (\text{Drove}), 0.2\rangle$
+  \item $\langle (\text{Travelled}), (\text{Flew}), 0.2\rangle$
+  \item $\langle (\text{Travelled}), (\text{took a trip}), 0.2\rangle$
+\end{itemize}
+\end{Example}
+
+We describe the details of building a DAG for an $n$-gram and synonym set $M$, in Algorithm~\ref{AlgBuildingDAG}. 
+
+\begin{algorithm}[t]
+\SetAlgoLined
+\KwData{an $n$-gram $T=\langle t_1,\cdots,t_n\rangle$ and $T=\{\langle A, B, f\rangle\}$}
+\KwResult{DAG $D$}
+
+$M = [\langle p, B, f\rangle: \langle A, B, f\rangle \in T \text{, and } \langle t_p,\cdots,t_{p+|A|-1}\rangle = A]$. \;
+$O = $ Create a list from element of $M$ where
+\caption{Building DAG from for $n$-gram.}
+\label{AlgBuildingDAG}
+\end{algorithm}
+
+In this subsection, we will see how a given large blob of text, segmented by special separator tokens, can be transformed into a searchable index. This index will subsequently be used for efficient document retrieval in the serving phase.
+
+  For the sake of explanation, we will use the 1-billion Word Dataset \citep{chelba2013one} as our running example. This dataset is a corpus of monolingual English text used to compare different language models. It is divided into training and test sets, with the training data comprising approximately 1.1 billion tokens, including separator tokens. In this dataset, each document corresponds to a tokenized sentence. Unfortunately, the sentences have been deduped, and information about their original frequency is not available in the training data. As we will discuss in this section, our approach could potentially leverage this property.
+
+  The data for index creation is prepared in several sequential steps. Each step builds upon the previous step's output, enriching the data structure representing the documents with new fields. We use the following data structure to represent our document (details on each field will be provided as we describe the population process)\footnote{We use Free Pascal syntax.}:
+
+\begin{verbatim}
+Document = record
+  ID: UInt64;
+  QualityScore: Single;
+  TargetToken: String;
+  Context: array of String;
+end;
+\end{verbatim}
+
+In the first step, we go through the tokens, $Token$ in $T$, and set  \textit{TargetToken} to be \tt{Token}, and \tt{ID} to be a unique value. The \tt{Context} is set to the tokens from the last “Start of the document” token, inclusively, until the current token, exclusively. The field \tt{QualityScore} can be used to indicate the quality of the original text document. For example, in the case of web documents, we can use Page Rank~\citep{brin1998anatomy}. For our running example, given a sentence,  the \tt{Context} for a \tt{token} is the list of the tokens that are before it, including \tt{\textbackslash S}. Also we set the \tt{QualityScore} field to 1. This means we believe the quality/validity of all our sentences are the same. 
+
+In the next step, we group documents by their \textit{TargetToken} and \textit{Context} fields. For each group of documents with identical \textit{TargetToken} and \textit{Context}, we create a new document with a unique \textit{ID}. The \textit{QualityScore} of this new document is calculated by summing the \textit{QualityScores} of the original documents in the group. While other aggregation functions (such as max) could be considered, we utilize the sum operator in this paper.
+
+In Subsection \ref{EnrichingDoc}, we will present additional enhancements to the \textit{Document} data structure.
+
+
